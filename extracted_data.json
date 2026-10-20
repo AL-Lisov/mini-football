@@ -1,0 +1,374 @@
+{
+  "team_name": "Доза Агро",
+  "city": "Нижний Новгород",
+  "tournament": "Первая лига-2026/2027",
+  "team_logo": "https://img.nagradion.ru/images/bf300x500/shields/4b5baf713d124abd.png",
+  "team_photo": "https://img.nagradion.ru/images/big/teams/teamb61fad2fc6202861fc9a3b03ef516825.jpg",
+  "players": [
+    {
+      "id": "1190379",
+      "name": "Балашов",
+      "number": "",
+      "age": "25",
+      "photo": "https://img.nagradion.ru/images/small/m/player0ed34af96bbb2dcc08bc7340b192dc53.jpg",
+      "raw_lines": [
+        "11224786\" class=\"row numeratable_row grid-5\">",
+        "Балашов",
+        "Максим",
+        "25 лет",
+        "Номер игрока:",
+        "17",
+        "<div"
+      ]
+    },
+    {
+      "id": "1333853",
+      "name": "Баринов",
+      "number": "",
+      "age": "29",
+      "photo": "https://img.nagradion.ru/images/small/m/player263e63e2793beffe86ebe1f2ba15b2a1.jpg",
+      "raw_lines": [
+        "11224814\" class=\"row numeratable_row grid-5\">",
+        "Баринов",
+        "Александр",
+        "29 лет",
+        "Номер игрока:",
+        "14",
+        "<div"
+      ]
+    },
+    {
+      "id": "1333854",
+      "name": "Власенко",
+      "number": "",
+      "age": "29",
+      "photo": "https://img.nagradion.ru/images/small/m/playerd46ff805cbdcbca8c071532b713722b6.jpg",
+      "raw_lines": [
+        "11224782\" class=\"row numeratable_row grid-5\">",
+        "Власенко",
+        "Максим",
+        "29 лет",
+        "Номер игрока:",
+        "<div"
+      ]
+    },
+    {
+      "id": "1333855",
+      "name": "Драгов",
+      "number": "",
+      "age": "30",
+      "photo": "https://img.nagradion.ru/images/small/m/playerbc8f95807a4e4c9cc70154e0e4dc8433.jpg",
+      "raw_lines": [
+        "11224790\" class=\"row numeratable_row grid-5\">",
+        "Драгов",
+        "Антон",
+        "30 лет",
+        "Номер игрока:",
+        "10",
+        "<div"
+      ]
+    },
+    {
+      "id": "1333856",
+      "name": "Кельгин",
+      "number": "",
+      "age": "26",
+      "photo": "https://img.nagradion.ru/images/small/m/player3a3442a26cb2d2a054bfb1048fb716d4.jpg",
+      "raw_lines": [
+        "11224778\" class=\"row numeratable_row grid-5\">",
+        "Кельгин",
+        "Семён",
+        "26 лет",
+        "Номер игрока:",
+        "9",
+        "<div"
+      ]
+    },
+    {
+      "id": "1198226",
+      "name": "Кожин",
+      "number": "",
+      "age": "29",
+      "photo": "",
+      "raw_lines": [
+        "11224844\" class=\"row numeratable_row grid-5\">",
+        "Кожин",
+        "Алексей",
+        "29 лет",
+        "Номер игрока:",
+        "16",
+        "<div"
+      ]
+    },
+    {
+      "id": "1327510",
+      "name": "Королев",
+      "number": "",
+      "age": "",
+      "photo": "https://img.nagradion.ru/images/small/m/player1f3e41c3ff333f89bdd2ccb170f27512.jpg",
+      "raw_lines": [
+        "11224816\" class=\"row numeratable_row grid-5\">",
+        "Королев",
+        "Николай",
+        "24 года",
+        "Номер игрока:",
+        "12",
+        "<div"
+      ]
+    },
+    {
+      "id": "1242087",
+      "name": "Лисов",
+      "number": "",
+      "age": "",
+      "photo": "https://img.nagradion.ru/images/small/m/player645128058.jpg",
+      "raw_lines": [
+        "11224798\" class=\"row numeratable_row grid-5\">",
+        "Лисов",
+        "Александр",
+        "31 год",
+        "Номер игрока:",
+        "1",
+        "<div"
+      ]
+    },
+    {
+      "id": "1333957",
+      "name": "Махоцкий",
+      "number": "",
+      "age": "",
+      "photo": "https://img.nagradion.ru/images/small/m/playerec15a75095dfc41dadafa37125fc2a06.jpg",
+      "raw_lines": [
+        "11226601\" class=\"row numeratable_row grid-5\">",
+        "Махоцкий",
+        "Анатолий",
+        "34 года",
+        "Номер игрока:",
+        "25",
+        "<div"
+      ]
+    },
+    {
+      "id": "1333857",
+      "name": "Орехов",
+      "number": "",
+      "age": "25",
+      "photo": "https://img.nagradion.ru/images/small/m/playerad4328f2642b399eebcd19f6812e498b.jpg",
+      "raw_lines": [
+        "11224852\" class=\"row numeratable_row grid-5\">",
+        "Орехов",
+        "Александр",
+        "25 лет",
+        "Номер игрока:",
+        "0",
+        "<div"
+      ]
+    },
+    {
+      "id": "1333858",
+      "name": "Павлюк",
+      "number": "",
+      "age": "29",
+      "photo": "https://img.nagradion.ru/images/small/m/playerac2d91dcabaf0009494f10c994c5ffff.jpg",
+      "raw_lines": [
+        "11224780\" class=\"row numeratable_row grid-5\">",
+        "Павлюк",
+        "Александр",
+        "29 лет",
+        "Номер игрока:",
+        "<div"
+      ]
+    },
+    {
+      "id": "1333859",
+      "name": "Рамодин",
+      "number": "",
+      "age": "30",
+      "photo": "https://img.nagradion.ru/images/small/m/playerd6b357fb8ec1b81bbc5e4b45193bbbe7.jpg",
+      "raw_lines": [
+        "11224794\" class=\"row numeratable_row grid-5\">",
+        "Рамодин",
+        "Александр",
+        "30 лет",
+        "Номер игрока:",
+        "13",
+        "<div"
+      ]
+    },
+    {
+      "id": "1223265",
+      "name": "Рябков",
+      "number": "",
+      "age": "25",
+      "photo": "",
+      "raw_lines": [
+        "11224858\" class=\"row numeratable_row grid-5\">",
+        "Рябков",
+        "Егор",
+        "25 лет",
+        "Номер игрока:",
+        "11",
+        "<div"
+      ]
+    },
+    {
+      "id": "1333860",
+      "name": "Смирнов",
+      "number": "",
+      "age": "30",
+      "photo": "https://img.nagradion.ru/images/small/m/playerb8ff9a6dfba60085e839beaa57b3c194.jpg",
+      "raw_lines": [
+        "11224820\" class=\"row numeratable_row grid-5\">",
+        "Смирнов",
+        "Александр",
+        "30 лет",
+        "Номер игрока:",
+        "8",
+        "<div"
+      ]
+    },
+    {
+      "id": "1333861",
+      "name": "Суров",
+      "number": "",
+      "age": "",
+      "photo": "https://img.nagradion.ru/images/small/m/player7bf466a90a0f8e2ba10eab4b87c8e1bc.jpg",
+      "raw_lines": [
+        "11224828\" class=\"row numeratable_row grid-5\">",
+        "Суров",
+        "Денис",
+        "24 года",
+        "Номер игрока:",
+        "3",
+        "<div"
+      ]
+    },
+    {
+      "id": "1333862",
+      "name": "Хусаинов",
+      "number": "",
+      "age": "26",
+      "photo": "https://img.nagradion.ru/images/small/m/playere6f3f84f3d4e3649edc478b5515781ed.jpg",
+      "raw_lines": [
+        "11224838\" class=\"row numeratable_row grid-5\">",
+        "Хусаинов",
+        "Анвер",
+        "26 лет",
+        "Номер игрока:",
+        "2",
+        "<div"
+      ]
+    },
+    {
+      "id": "1190277",
+      "name": "Цыганов",
+      "number": "",
+      "age": "29",
+      "photo": "",
+      "raw_lines": [
+        "11224880\" class=\"row numeratable_row grid-5\">",
+        "Цыганов",
+        "Сергей",
+        "29 лет",
+        "Номер игрока:",
+        "23",
+        "<div"
+      ]
+    },
+    {
+      "id": "1333863",
+      "name": "Яблочков",
+      "number": "",
+      "age": "30",
+      "photo": "https://img.nagradion.ru/images/small/m/playerfff424ad9c9ad7c69e3e357c641c9fc3.jpg",
+      "raw_lines": [
+        "11224792\" class=\"row numeratable_row grid-5\">",
+        "Яблочков",
+        "Кирилл",
+        "30 лет",
+        "Номер игрока:",
+        "21",
+        "Руководящий и тренерский состав",
+        "свернуть"
+      ]
+    }
+  ],
+  "coaches": [
+    "Павлюк",
+    "Балашов"
+  ],
+  "matches": [
+    {
+      "tour": "1",
+      "date": "19.10.2026 Пн 21:10",
+      "team1": "Продтерминал\n                                            (Нижний Новгород)",
+      "team2": "Доза Агро\n                                            (Нижний Новгород)",
+      "venue": "ФОК &quot;Приокский&quot;\"\n                   onclick=\"runXHR('https://nndepsport.nagradion.ru/stadiums/map-match/85449'); return false;\"\n                >\n                    ФОК \"Приокский\"\n                ",
+      "match_id": "4029315",
+      "score": "0:0"
+    },
+    {
+      "tour": "8",
+      "date": "",
+      "team1": "Промавто\n                                            (Нижний Новгород)",
+      "team2": "Доза Агро\n                                            (Нижний Новгород)",
+      "venue": "ФОК \"Приокский\"",
+      "match_id": "4029318",
+      "score": "— : —"
+    },
+    {
+      "tour": "14",
+      "date": "",
+      "team1": "ФХНН-2\n                                            (Нижний Новгород)",
+      "team2": "Доза Агро\n                                            (Нижний Новгород)",
+      "venue": "ФОК \"Приокский\"",
+      "match_id": "4029320",
+      "score": "— : —"
+    },
+    {
+      "tour": "16",
+      "date": "",
+      "team1": "Доза Агро\n                                            (Нижний Новгород)",
+      "team2": "МясиКо\n                                            (Нижний Новгород)",
+      "venue": "ФОК \"Приокский\"",
+      "match_id": "4029311",
+      "score": "— : —"
+    },
+    {
+      "tour": "21",
+      "date": "",
+      "team1": "Доза Агро\n                                            (Нижний Новгород)",
+      "team2": "ITECO\n                                            (Нижний Новгород)",
+      "venue": "ФОК \"Приокский\"",
+      "match_id": "4029321",
+      "score": "— : —"
+    },
+    {
+      "tour": "22",
+      "date": "",
+      "team1": "Красная Рамень\n                                            (Останкино)",
+      "team2": "Доза Агро\n                                            (Нижний Новгород)",
+      "venue": "ФОК \"Приокский\"",
+      "match_id": "4029306",
+      "score": "— : —"
+    },
+    {
+      "tour": "27",
+      "date": "",
+      "team1": "НГПУ имени Козьмы Минина\n                                            (Нижний Новгород)",
+      "team2": "Доза Агро\n                                            (Нижний Новгород)",
+      "venue": "ФОК \"Приокский\"",
+      "match_id": "4029300",
+      "score": "— : —"
+    },
+    {
+      "tour": "6",
+      "date": "",
+      "team1": "ННГУ имени Н. И. Лобачевского\n                                            (Нижний Новгород)",
+      "team2": "Доза Агро\n                                            (Нижний Новгород)",
+      "venue": "ФОК &quot;Приокский&quot;\"\n                   onclick=\"runXHR('https://nndepsport.nagradion.ru/stadiums/map-match/85449'); return false;\"\n                >\n                    ФОК \"Приокский\"\n                ",
+      "match_id": "4029293",
+      "score": "— : —"
+    }
+  ]
+}

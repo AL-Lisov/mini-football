@@ -1,0 +1,10 @@
+# Temporary scratch files and SingleFile HTML dumps
+*.bin
+*.log
+scratch/
+__pycache__/
+
+# Large singlefile reference dumps (already parsed into site_data.json)
+*ННДЕПСПОРТ*
+*Суперлига*
+*Т-Банк*
