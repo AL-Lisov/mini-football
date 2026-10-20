@@ -154,8 +154,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const query = searchVal.trim().toLowerCase();
     const filtered = data.players.filter(p => {
       const matchPos = (currentPosition === 'all') || (p.position === currentPosition);
-      const matchSearch = !query || 
-        p.name.toLowerCase().includes(query) || 
+      const matchSearch = !query ||
+        p.name.toLowerCase().includes(query) ||
         (p.number && p.number.toString().includes(query));
       return matchPos && matchSearch;
     });
@@ -163,7 +163,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (filtered.length === 0) {
       squadGroupedOutput.innerHTML = `
         <div style="text-align: center; padding: 48px 20px; color: var(--text-muted); background: var(--bg-card); border: 1px solid var(--border-card); border-radius: var(--radius-md);">
-          <div style="font-size: 28px; margin-bottom: 8px;">🔍</div>
           <div style="font-size: 15px; font-weight: 700; color: var(--text-title); margin-bottom: 4px;">Игроков не найдено</div>
           <div style="font-size: 13px;">По запросу «${searchVal}» ничего не найдено в заявке</div>
         </div>
@@ -253,10 +252,10 @@ document.addEventListener('DOMContentLoaded', () => {
               <td style="font-family: var(--font-display); font-weight: 800; color: var(--brand-primary);">${numStr}</td>
               <td>
                 <div class="table-person-cell">
-                  ${hasPhoto 
-                    ? `<img src="${p.photo}" class="table-person-thumb" alt="${p.name}" onerror="this.style.display='none'">` 
-                    : `<div class="table-person-thumb" style="display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:var(--brand-primary);">${initials}</div>`
-                  }
+                  ${hasPhoto
+              ? `<img src="${p.photo}" class="table-person-thumb" alt="${p.name}" onerror="this.style.display='none'">`
+              : `<div class="table-person-thumb" style="display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:var(--brand-primary);">${initials}</div>`
+            }
                   <strong style="color: var(--text-title);">${p.name}</strong>
                 </div>
               </td>
@@ -313,7 +312,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
           const miniStatsHtml = isGk ? `
             <div class="player-stats-mini-row gk-stats-row">
-              <span class="mini-stat-item" title="Пропущено голов">🧤 Проп: <strong style="color: var(--accent-red);">${p.goals_conceded ?? 0}</strong></span>
+              <span class="mini-stat-item" title="Пропущено голов">Проп: <strong style="color: var(--accent-red);">${p.goals_conceded ?? 0}</strong></span>
               <span class="mini-stat-sep">•</span>
               <span class="mini-stat-item" title="Матчи на ноль («сухие»)">На ноль: <strong style="color: var(--accent-green);">${p.clean_sheets ?? 0}</strong></span>
               <span class="mini-stat-sep">•</span>
@@ -331,10 +330,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
           card.innerHTML = `
             <div class="player-portrait-box">
-              ${hasPhoto 
-                ? `<img src="${p.photo}" class="player-portrait-img" alt="${p.name}" loading="lazy" onerror="this.outerHTML='<div class=\\'player-portrait-initials\\'>${initials}</div>'">`
-                : `<div class="player-portrait-initials">${initials}</div>`
-              }
+              ${hasPhoto
+              ? `<img src="${p.photo}" class="player-portrait-img" alt="${p.name}" loading="lazy" onerror="this.outerHTML='<div class=\\'player-portrait-initials\\'>${initials}</div>'">`
+              : `<div class="player-portrait-initials">${initials}</div>`
+            }
             </div>
             <div class="player-card-details">
               <div class="player-name-line">
@@ -429,10 +428,10 @@ document.addEventListener('DOMContentLoaded', () => {
       let statusBadgeText = '1-й круг';
       let statusBadgeColor = 'var(--text-muted)';
       if (isCompleted) {
-        statusBadgeText = '✓ Завершен';
+        statusBadgeText = 'Завершен';
         statusBadgeColor = 'var(--accent-green)';
       } else if (isNext) {
-        statusBadgeText = '⚡ Ближайший';
+        statusBadgeText = 'Ближайший';
         statusBadgeColor = 'var(--accent-amber)';
       }
 
@@ -472,19 +471,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
         ${m.note ? `
           <div style="margin: 8px 0 12px; padding: 8px 12px; background: var(--bg-card-subtle); border: 1px solid var(--border-subtle); border-radius: var(--radius-xs); font-size: 12px; color: var(--text-secondary); display: flex; align-items: center; gap: 8px;">
-            <span style="font-size: 14px;">🧤</span> <span>${m.note}</span>
+            <span>${m.note}</span>
           </div>
         ` : ''}
 
         <div class="match-footer-row">
           <div class="match-location-link">
-            📍 <strong>${m.venue}</strong>
+            <strong>${m.venue}</strong>
             <a href="https://yandex.ru/maps/?text=${encodeURIComponent(m.venue + ' Нижний Новгород')}" target="_blank" rel="noopener">На карте</a>
           </div>
 
           <div style="display: flex; gap: 8px;">
             <a href="${data.tournament_url}/match/${m.match_id}" target="_blank" rel="noopener" class="t-btn ${isCompleted ? 't-btn-primary' : 't-btn-secondary'}" style="height: 32px; padding: 0 12px; font-size: 12px;">
-              ${isCompleted ? 'Протокол матча ↗' : 'Превью матча'}
+              ${isCompleted ? 'Протокол матча' : 'Превью матча'}
             </a>
             ${isNext ? `
               <button class="t-btn t-btn-primary" style="height: 32px; padding: 0 12px; font-size: 12px;" onclick="window.downloadICS('${m.team1}', '${m.team2}', '${m.venue}')">
@@ -669,10 +668,10 @@ document.addEventListener('DOMContentLoaded', () => {
     playerModalBody.innerHTML = `
       <div class="modal-player-overview">
         <div class="modal-player-pic">
-          ${hasPhoto 
-            ? `<img src="${p.photo}" alt="${p.name}" onerror="this.outerHTML='<div style=\\'display:flex;align-items:center;justify-content:center;height:100%;font-size:22px;font-weight:800;color:var(--brand-primary);\\'>${initials}</div>'">`
-            : `<div style="display:flex;align-items:center;justify-content:center;height:100%;font-size:22px;font-weight:800;color:var(--brand-primary);">${initials}</div>`
-          }
+          ${hasPhoto
+        ? `<img src="${p.photo}" alt="${p.name}" onerror="this.outerHTML='<div style=\\'display:flex;align-items:center;justify-content:center;height:100%;font-size:22px;font-weight:800;color:var(--brand-primary);\\'>${initials}</div>'">`
+        : `<div style="display:flex;align-items:center;justify-content:center;height:100%;font-size:22px;font-weight:800;color:var(--brand-primary);">${initials}</div>`
+      }
         </div>
         <div>
           <h2 style="font-size: 18px; font-weight: 800; color: var(--text-title); margin-bottom: 4px;">${p.name}</h2>
@@ -700,7 +699,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <div style="display: flex; justify-content: space-between; padding: 8px 0;">
           <span style="color: var(--text-muted);">В базе Наградион:</span>
           <a href="${data.tournament_url}/player/${p.id}" target="_blank" rel="noopener" style="color: var(--brand-primary); font-weight: 700; text-decoration: underline;">
-            ID ${p.id} ↗
+            ID ${p.id}
           </a>
         </div>
       </div>
@@ -751,7 +750,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // =========================================================================
   // 7. CALENDAR EXPORT (.ICS)
   // =========================================================================
-  window.downloadICS = function(team1, team2, venue) {
+  window.downloadICS = function (team1, team2, venue) {
     const icsContent = [
       'BEGIN:VCALENDAR',
       'VERSION:2.0',
