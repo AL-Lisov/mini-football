@@ -519,9 +519,16 @@ document.addEventListener('DOMContentLoaded', () => {
       tr.innerHTML = `
         <td><span style="font-weight: 800; color: var(--text-muted);">${row.pos}</span></td>
         <td class="col-club-left">
-          <div class="club-cell-content">
-            <strong style="color: var(--text-title);">${row.team}</strong>
-            <span style="font-size: 11px; color: var(--text-muted);">(${row.city})</span>
+          <div class="club-cell-content" style="display: flex; align-items: center; gap: 10px;">
+            ${row.shield ? `
+              <img src="${row.shield}" alt="${row.team}" style="width: 26px; height: 26px; object-fit: contain; border-radius: 4px; background: #ffffff; padding: 1px; border: 1px solid var(--border-subtle); flex-shrink: 0;" onerror="this.style.display='none'">
+            ` : `
+              <div style="width: 26px; height: 26px; border-radius: 4px; background: var(--bg-card-subtle); border: 1px solid var(--border-subtle); color: var(--brand-primary); font-family: var(--font-display); font-size: 10px; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">${row.team.slice(0, 2).toUpperCase()}</div>
+            `}
+            <div>
+              <strong style="color: var(--text-title); display: block; line-height: 1.2;">${row.team}</strong>
+              <span style="font-size: 11px; color: var(--text-muted);">(${row.city})</span>
+            </div>
           </div>
         </td>
         <td>${row.games}</td>

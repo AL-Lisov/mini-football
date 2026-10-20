@@ -325,10 +325,10 @@ window.SITE_DATA = {
     {
       "tour": "8",
       "date": "Дата уточняется",
-      "team1": "Промавто (Нижний Новгород)",
+      "team1": "ННГУ имени Н. И. Лобачевского (Нижний Новгород)",
       "team2": "Доза Агро (Нижний Новгород)",
       "venue": "ФОК \"Приокский\"",
-      "match_id": "4029318",
+      "match_id": "4029288",
       "score": "— : —",
       "status": "next"
     },
@@ -413,6 +413,7 @@ window.SITE_DATA = {
       "pos": 2,
       "team": "Доза Агро",
       "city": "Н.Новгород",
+      "shield": "https://img.nagradion.ru/images/bf300x500/shields/4b5baf713d124abd.png",
       "games": 1,
       "w": 0,
       "d": 1,
@@ -441,8 +442,9 @@ window.SITE_DATA = {
     },
     {
       "pos": 4,
-      "team": "Промавто",
+      "team": "ННГУ имени Н. И. Лобачевского",
       "city": "Н.Новгород",
+      "shield": "shields/nngu.png",
       "games": 0,
       "w": 0,
       "d": 0,
@@ -480,7 +482,7 @@ window.SITE_DATA = {
     },
     {
       "pos": 7,
-      "team": "НГПУ им. Минина",
+      "team": "НГПУ имени Козьмы Минина",
       "city": "Н.Новгород",
       "games": 0,
       "w": 0,
