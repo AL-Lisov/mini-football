@@ -594,16 +594,14 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // =========================================================================
-  // 5. STANDINGS TABLE (Serie A / Champions League)
+  // 5. STANDINGS TABLE (Serie A / Champions League Pro Responsive Table)
   // =========================================================================
   function renderStandings() {
     if (!leagueStandingsBody) return;
     leagueStandingsBody.innerHTML = '';
 
     data.standings.forEach(row => {
-      const tr = document.createElement('tr');
       const isMyTeam = row.team === 'Доза Агро';
-      if (isMyTeam) tr.className = 'highlight-row';
 
       const formHtml = row.form.map(f => {
         const cls = f === 'W' ? 'win' : (f === 'D' ? 'draw' : 'loss');
@@ -611,34 +609,87 @@ document.addEventListener('DOMContentLoaded', () => {
         return `<span class="form-pill-tag ${cls}">${letter}</span>`;
       }).join('');
 
+      // Main Row
+      const tr = document.createElement('tr');
+      tr.className = `standings-team-row ${isMyTeam ? 'highlight-row' : ''}`;
+      tr.setAttribute('data-pos', row.pos);
+
       tr.innerHTML = `
-        <td><span style="font-family: var(--font-display); font-weight: 800; color: ${row.pos <= 3 ? 'var(--neon-amber)' : 'var(--text-muted)'};">${row.pos}</span></td>
-        <td class="col-club-left">
-          <div style="display: flex; align-items: center; gap: 10px; text-align: left;">
+        <td class="col-pos"><span class="pos-badge ${row.pos <= 3 ? 'medal-zone' : ''}">${row.pos}</span></td>
+        <td class="col-team col-club-left">
+          <div class="team-cell-wrap">
             ${row.shield ? `
-              <img src="${row.shield}" alt="${row.team}" style="width: 28px; height: 28px; object-fit: contain; border-radius: 4px; background: #ffffff; padding: 2px; border: 1px solid var(--border-subtle); flex-shrink: 0;" onerror="this.style.display='none'">
+              <img src="${row.shield}" alt="${row.team}" class="standings-shield" onerror="this.style.display='none'">
             ` : `
-              <div style="width: 28px; height: 28px; border-radius: 4px; background: var(--bg-card-subtle); border: 1px solid var(--border-subtle); color: var(--neon-volt); font-family: var(--font-display); font-size: 10px; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">${row.team.slice(0, 2).toUpperCase()}</div>
+              <div class="standings-shield-initials">${row.team.slice(0, 2).toUpperCase()}</div>
             `}
-            <div>
-              <strong style="color: ${isMyTeam ? 'var(--neon-volt)' : '#FFFFFF'}; display: block; line-height: 1.2;">${row.team}</strong>
-              <span style="font-size: 11px; color: var(--text-muted);">(${row.city})</span>
+            <div class="team-info-box">
+              <strong class="team-title-text ${isMyTeam ? 'my-club-name' : ''}">${row.team}</strong>
+              <span class="team-meta-sub">${row.city}</span>
+              <!-- Mobile inline compact record: 1В 0Н 0П • Мячи: 3-1 -->
+              <div class="team-mobile-substat">
+                <span>${row.w}В ${row.d}Н ${row.l}П</span>
+                <span class="dot-sep">•</span>
+                <span>Мячи: ${row.goals}</span>
+              </div>
             </div>
           </div>
         </td>
-        <td>${row.games}</td>
-        <td>${row.w}</td>
-        <td>${row.d}</td>
-        <td>${row.l}</td>
-        <td>${row.goals}</td>
-        <td style="color: ${row.diff.startsWith('+') ? 'var(--neon-volt)' : (row.diff.startsWith('-') ? 'var(--accent-red)' : 'inherit')}; font-weight: 700;">${row.diff}</td>
-        <td class="standings-pts-bold">${row.points}</td>
-        <td>
-          <div style="display: flex; gap: 3px; justify-content: center;">${formHtml}</div>
+        <td class="col-games">${row.games}</td>
+        <td class="col-wins col-optional">${row.w}</td>
+        <td class="col-draws col-optional">${row.d}</td>
+        <td class="col-losses col-optional">${row.l}</td>
+        <td class="col-goals col-optional">${row.goals}</td>
+        <td class="col-diff ${row.diff.startsWith('+') ? 'pos-diff' : (row.diff.startsWith('-') ? 'neg-diff' : '')}">${row.diff}</td>
+        <td class="col-pts"><span class="standings-pts-badge">${row.points}</span></td>
+        <td class="col-form col-optional">
+          <div class="form-pills-row">${formHtml}</div>
         </td>
       `;
 
+      // Expandable Drawer Row for Mobile
+      const drawerTr = document.createElement('tr');
+      drawerTr.className = 'standings-drawer-row';
+      drawerTr.id = `drawer-pos-${row.pos}`;
+      drawerTr.style.display = 'none';
+
+      drawerTr.innerHTML = `
+        <td colspan="10" class="standings-drawer-cell">
+          <div class="standings-drawer-content">
+            <div class="drawer-stat-grid">
+              <div class="drawer-stat-item"><span class="drawer-lbl">Игры</span><strong>${row.games}</strong></div>
+              <div class="drawer-stat-item"><span class="drawer-lbl">Победы</span><strong style="color: var(--accent-green);">${row.w}</strong></div>
+              <div class="drawer-stat-item"><span class="drawer-lbl">Ничьи</span><strong style="color: var(--neon-amber);">${row.d}</strong></div>
+              <div class="drawer-stat-item"><span class="drawer-lbl">Поражения</span><strong style="color: var(--accent-red);">${row.l}</strong></div>
+              <div class="drawer-stat-item"><span class="drawer-lbl">Забито/Проп</span><strong>${row.goals}</strong></div>
+              <div class="drawer-stat-item"><span class="drawer-lbl">Разница</span><strong>${row.diff}</strong></div>
+              <div class="drawer-stat-item"><span class="drawer-lbl">Очки</span><strong style="color: var(--neon-volt); font-size: 16px;">${row.points}</strong></div>
+            </div>
+            <div class="drawer-footer-line">
+              <span class="drawer-lbl">Город: ${row.city}</span>
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <span class="drawer-lbl">Форма:</span>
+                <div style="display: flex; gap: 4px;">${formHtml}</div>
+              </div>
+            </div>
+          </div>
+        </td>
+      `;
+
+      // Toggle drawer on click
+      tr.addEventListener('click', () => {
+        const isCurrentlyOpen = drawerTr.style.display === 'table-row';
+        document.querySelectorAll('.standings-drawer-row').forEach(d => d.style.display = 'none');
+        document.querySelectorAll('.standings-team-row').forEach(r => r.classList.remove('is-expanded'));
+
+        if (!isCurrentlyOpen) {
+          drawerTr.style.display = 'table-row';
+          tr.classList.add('is-expanded');
+        }
+      });
+
       leagueStandingsBody.appendChild(tr);
+      leagueStandingsBody.appendChild(drawerTr);
     });
   }
 

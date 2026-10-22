@@ -1631,6 +1631,7 @@ button, input, select {
   letter-spacing: 0.05em;
   color: var(--text-muted);
   border-bottom: 1px solid var(--border-card);
+  text-transform: uppercase;
 }
 
 .superliga-standings-table td {
@@ -1648,11 +1649,98 @@ button, input, select {
   color: var(--neon-volt);
 }
 
-.standings-pts-bold {
+/* Standings Row Elements */
+.team-cell-wrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-align: left;
+}
+
+.standings-shield {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  border-radius: var(--radius-xs);
+  background: #FFFFFF;
+  padding: 2px;
+  border: 1px solid var(--border-subtle);
+  flex-shrink: 0;
+}
+
+.standings-shield-initials {
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-xs);
+  background: var(--bg-card-subtle);
+  border: 1px solid var(--border-subtle);
+  color: var(--neon-volt);
+  font-family: var(--font-display);
+  font-size: 10px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.team-info-box {
+  display: flex;
+  flex-direction: column;
+}
+
+.team-title-text {
+  font-size: 13px;
+  font-weight: 700;
+  color: #FFFFFF;
+  line-height: 1.2;
+}
+
+.team-title-text.my-club-name {
+  color: var(--neon-volt);
+}
+
+.team-meta-sub {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.team-mobile-substat {
+  display: none; /* Shown on mobile only */
+}
+
+.pos-badge {
+  font-family: var(--font-display);
+  font-weight: 800;
+  color: var(--text-muted);
+}
+
+.pos-badge.medal-zone {
+  color: var(--neon-amber);
+}
+
+.pos-diff {
+  color: var(--neon-volt);
+  font-weight: 700;
+}
+
+.neg-diff {
+  color: var(--accent-red);
+  font-weight: 700;
+}
+
+.standings-pts-bold,
+.standings-pts-badge {
   font-family: var(--font-display);
   font-size: 15px;
   font-weight: 900;
   color: #FFFFFF;
+}
+
+.form-pills-row {
+  display: flex;
+  gap: 3px;
+  justify-content: center;
 }
 
 .form-pill-tag {
@@ -1671,6 +1759,80 @@ button, input, select {
 .form-pill-tag.win { background: var(--accent-green); }
 .form-pill-tag.draw { background: var(--neon-amber); color: #000000; }
 .form-pill-tag.loss { background: var(--accent-red); }
+
+.standings-mobile-tap-hint {
+  display: none;
+}
+
+/* Expandable Drawer Row */
+.standings-team-row {
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.standings-team-row:hover {
+  background: var(--bg-hover);
+}
+
+.standings-team-row.is-expanded {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.standings-drawer-cell {
+  background: var(--bg-card-elevated);
+  border-bottom: 2px solid var(--border-neon) !important;
+  padding: 0 !important;
+}
+
+.standings-drawer-content {
+  padding: 14px 18px;
+  animation: drawerSlide 0.2s ease-out;
+}
+
+@keyframes drawerSlide {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.drawer-stat-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.drawer-stat-item {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-xs);
+  padding: 6px 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.drawer-lbl {
+  font-size: 10px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  font-weight: 700;
+}
+
+.drawer-stat-item strong {
+  font-family: var(--font-display);
+  font-size: 13px;
+  color: #FFFFFF;
+}
+
+.drawer-footer-line {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 8px;
+  border-top: 1px solid var(--border-subtle);
+  font-size: 12px;
+}
 
 /* --------------------------------------------------------------------------
    13. TACTICAL PITCH (Cyber Turf 5x5)
@@ -2078,5 +2240,137 @@ button, input, select {
   }
   .pitch-court-surface {
     height: 380px;
+  }
+
+  /* =========================================================================
+     STANDINGS MOBILE ZERO-SWIPE DESIGN (100% Fits Screen Without Scrolling)
+     ========================================================================= */
+  .table-card-container {
+    padding: 16px 8px !important;
+    overflow-x: hidden !important; /* Eliminate all horizontal swiping */
+  }
+
+  .standings-header-bar {
+    margin-bottom: 14px;
+  }
+
+  .standings-title {
+    font-size: 14px;
+  }
+
+  .standings-legend {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .standings-mobile-tap-hint {
+    display: block !important;
+    font-size: 11px;
+    color: var(--neon-cyan);
+    font-weight: 600;
+  }
+
+  .superliga-standings-table {
+    width: 100% !important;
+    table-layout: fixed !important;
+  }
+
+  /* Hide non-vital separate columns on mobile */
+  .superliga-standings-table .col-optional {
+    display: none !important;
+  }
+
+  .superliga-standings-table th,
+  .superliga-standings-table td {
+    padding: 10px 4px !important;
+  }
+
+  .superliga-standings-table th.col-pos,
+  .superliga-standings-table td.col-pos {
+    width: 26px !important;
+    padding-left: 2px !important;
+  }
+
+  .superliga-standings-table th.col-team,
+  .superliga-standings-table td.col-team {
+    width: auto !important;
+    text-align: left !important;
+  }
+
+  .superliga-standings-table th.col-games,
+  .superliga-standings-table td.col-games {
+    width: 28px !important;
+    font-size: 12px !important;
+  }
+
+  .superliga-standings-table th.col-diff,
+  .superliga-standings-table td.col-diff {
+    width: 36px !important;
+    font-size: 12px !important;
+  }
+
+  .superliga-standings-table th.col-pts,
+  .superliga-standings-table td.col-pts {
+    width: 38px !important;
+    padding-right: 4px !important;
+  }
+
+  .team-cell-wrap {
+    gap: 8px !important;
+  }
+
+  .standings-shield {
+    width: 24px !important;
+    height: 24px !important;
+  }
+
+  .standings-shield-initials {
+    width: 24px !important;
+    height: 24px !important;
+    font-size: 9px !important;
+  }
+
+  .team-title-text {
+    font-size: 12px !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    max-width: 120px !important;
+    display: block !important;
+  }
+
+  .team-meta-sub {
+    display: none !important;
+  }
+
+  .team-mobile-substat {
+    display: flex !important;
+    align-items: center;
+    gap: 4px;
+    font-size: 10px;
+    color: var(--text-muted);
+    font-weight: 600;
+    margin-top: 2px;
+  }
+
+  .dot-sep {
+    color: var(--border-neon);
+  }
+
+  .standings-pts-badge {
+    background: var(--neon-volt) !important;
+    color: #000000 !important;
+    font-family: var(--font-display) !important;
+    font-size: 13px !important;
+    font-weight: 900 !important;
+    padding: 3px 6px !important;
+    border-radius: var(--radius-xs) !important;
+    display: inline-block !important;
+    box-shadow: 0 0 10px rgba(212, 255, 0, 0.3) !important;
+  }
+
+  .drawer-stat-grid {
+    grid-template-columns: repeat(4, 1fr) !important;
   }
 }
