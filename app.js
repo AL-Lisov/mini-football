@@ -1,6 +1,7 @@
 /**
- * NNDEPSPORT OFFICIAL SPORTS PLATFORM - APPLICATION CONTROLLER
- * Fusion of T-Bank Modern Minimalism + Superliga RFS Futsal Architecture
+ * МФК «ДОЗА АГРО» - APPLICATION CONTROLLER
+ * Juventus Brutalism + EA FC 24 FUT Ultimate Team Gamification
+ * Dynamic 3D Tilt • Live Countdown • Interactive Tactics 5x5
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -26,13 +27,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const calendarMatchList = document.getElementById('calendarMatchList');
   const leagueStandingsBody = document.getElementById('leagueStandingsBody');
-  const tabButtons = document.querySelectorAll('.t-tab-item');
+  const tabButtons = document.querySelectorAll('.pro-tab-item, .t-tab-item');
   const tabPanels = document.querySelectorAll('.tab-view-panel');
 
   const playerModal = document.getElementById('playerModal');
   const playerModalBody = document.getElementById('playerModalBody');
   const btnClosePlayerModal = document.getElementById('btnClosePlayerModal');
-  const btnDownloadIcs = document.getElementById('btnDownloadIcs');
 
   // Photo Lightbox Elements
   const photoLightbox = document.getElementById('photoLightbox');
@@ -46,12 +46,122 @@ document.addEventListener('DOMContentLoaded', () => {
   const leaderItemPavlyuk = document.getElementById('leaderItemPavlyuk');
   const leaderItemBalashov = document.getElementById('leaderItemBalashov');
 
-  // Photo Lightbox Controller
+  // =========================================================================
+  // 1. FUT RATINGS & STATS ENGINE
+  // =========================================================================
+  const playerCustomStats = {
+    // Lisov Alexander (Goalkeeper, 31 yo)
+    '1333860': {
+      ovr: 89,
+      roleName: 'THE WALL',
+      cardTier: 'gold-special',
+      isGk: true,
+      stats: { REF: 92, SAV: 90, HAN: 88, POS: 90, KIC: 86, PHY: 87 }
+    },
+    // Orekhov Alexander (Goalkeeper, 23 yo)
+    '1333863': {
+      ovr: 88,
+      roleName: 'SAFE HANDS',
+      cardTier: 'gold-special',
+      isGk: true,
+      stats: { REF: 90, SAV: 88, HAN: 87, POS: 88, KIC: 85, PHY: 86 }
+    },
+    // Balashov Maxim (Universal / Captain, 25 yo)
+    '1190379': {
+      ovr: 87,
+      roleName: 'CAPITANO',
+      cardTier: 'gold-special',
+      isGk: false,
+      stats: { PAC: 88, SHO: 85, PAS: 87, DRI: 88, DEF: 82, PHY: 85 }
+    },
+    // Dragov Anton (Forward, 30 yo)
+    '1333855': {
+      ovr: 86,
+      roleName: 'STRIKER',
+      cardTier: 'gold',
+      isGk: false,
+      stats: { PAC: 87, SHO: 88, PAS: 82, DRI: 85, DEF: 65, PHY: 84 }
+    },
+    // Barinov Alexander (Defender, 29 yo)
+    '1333853': {
+      ovr: 85,
+      roleName: 'COMMANDER',
+      cardTier: 'gold',
+      isGk: false,
+      stats: { PAC: 82, SHO: 74, PAS: 84, DRI: 80, DEF: 88, PHY: 86 }
+    }
+  };
+
+  function getPlayerFUTStats(player) {
+    if (playerCustomStats[player.id]) {
+      return playerCustomStats[player.id];
+    }
+    const isGk = player.position === 'Вратарь';
+    const baseOvr = 82 + ((parseInt(player.id, 10) % 4));
+    if (isGk) {
+      return {
+        ovr: baseOvr,
+        roleName: 'GOALKEEPER',
+        cardTier: 'gold',
+        isGk: true,
+        stats: { REF: baseOvr + 2, SAV: baseOvr + 1, HAN: baseOvr, POS: baseOvr, KIC: baseOvr - 2, PHY: baseOvr }
+      };
+    }
+    return {
+      ovr: baseOvr,
+      roleName: player.position.toUpperCase(),
+      cardTier: 'gold',
+      isGk: false,
+      stats: {
+        PAC: 83 + (parseInt(player.id) % 6),
+        SHO: 80 + (parseInt(player.id) % 5),
+        PAS: 81 + (parseInt(player.id) % 6),
+        DRI: 82 + (parseInt(player.id) % 5),
+        DEF: player.position === 'Защитник' ? 84 : 76,
+        PHY: 81 + (parseInt(player.id) % 4)
+      }
+    };
+  }
+
+  function getPosShortCode(pos) {
+    switch (pos) {
+      case 'Вратарь': return 'ВРТ';
+      case 'Защитник': return 'ЗАЩ';
+      case 'Универсал': return 'УНВ';
+      case 'Нападающий': return 'НАП';
+      case 'Полевой': return 'ПОЛ';
+      default: return 'ИГР';
+    }
+  }
+
+  function getPosClass(pos) {
+    switch (pos) {
+      case 'Вратарь': return 'pos-gk';
+      case 'Защитник': return 'pos-def';
+      case 'Универсал': return 'pos-uni';
+      case 'Нападающий': return 'pos-fwd';
+      case 'Полевой': return 'pos-pol';
+      default: return '';
+    }
+  }
+
+  function getInitials(fullName) {
+    if (!fullName) return 'ДА';
+    const parts = fullName.trim().split(/\s+/);
+    if (parts.length >= 2) {
+      return (parts[0][0] + parts[1][0]).toUpperCase();
+    }
+    return parts[0].slice(0, 2).toUpperCase();
+  }
+
   function getHighResPhoto(url) {
     if (!url) return '';
     return url.replace('/small/', '/normal/');
   }
 
+  // =========================================================================
+  // 2. PHOTO LIGHTBOX CONTROLLER
+  // =========================================================================
   function openPhotoLightbox(imgUrl, titleText, subText) {
     if (!photoLightbox || !imgUrl) return;
     lightboxImg.src = imgUrl;
@@ -98,7 +208,7 @@ document.addEventListener('DOMContentLoaded', () => {
       openPhotoLightbox(
         data.team_logo || 'https://img.nagradion.ru/images/bf300x500/shields/4b5baf713d124abd.png',
         'МФК «Доза Агро» • Официальная клубная эмблема',
-        'Нижний Новгород • Чемпионат города по мини-футболу'
+        'Нижний Новгород • Чемпионат по мини-футболу'
       );
     });
   }
@@ -107,8 +217,8 @@ document.addEventListener('DOMContentLoaded', () => {
     leaderItemPavlyuk.addEventListener('click', () => {
       openPhotoLightbox(
         'https://img.nagradion.ru/images/normal/m/playerac2d91dcabaf0009494f10c994c5ffff.jpg',
-        'Павлюк Александр • Руководитель команды',
-        'МФК «Доза Агро» • Наградион ЕИС'
+        'Павлюк Александр • Руководитель МФК «Доза Агро»',
+        'Первая лига Нижнего Новгорода'
       );
     });
   }
@@ -117,38 +227,17 @@ document.addEventListener('DOMContentLoaded', () => {
     leaderItemBalashov.addEventListener('click', () => {
       openPhotoLightbox(
         'https://img.nagradion.ru/images/normal/m/player0ed34af96bbb2dcc08bc7340b192dc53.jpg',
-        'Балашов Максим • Тренер / Капитан',
-        'МФК «Доза Агро» • Наградион ЕИС'
+        'Балашов Максим • Тренер и капитан команды',
+        'МФК «Доза Агро» • Игровой номер 17'
       );
     });
   }
 
-  // Permanently clean light theme
-  document.documentElement.setAttribute('data-theme', 'light');
-  document.body.setAttribute('data-theme', 'light');
-
   // =========================================================================
-  // 2. SQUAD RENDERING & FILTERS (Superliga Structure + T-Bank Minimalist Cards)
+  // 3. SQUAD RENDERING (FUT CARDS + 3D TILT EFFECT)
   // =========================================================================
-  function getPositionBadgeClass(pos) {
-    switch (pos) {
-      case 'Вратарь': return 'pos-gk';
-      case 'Защитник': return 'pos-def';
-      case 'Нападающий': return 'pos-fwd';
-      case 'Универсал': return 'pos-uni';
-      default: return 'pos-pol';
-    }
-  }
-
-  function getInitials(name) {
-    const parts = name.trim().split(' ');
-    if (parts.length >= 2) {
-      return (parts[0][0] + parts[1][0]).toUpperCase();
-    }
-    return name.slice(0, 2).toUpperCase();
-  }
-
   function renderSquad() {
+    if (!squadGroupedOutput) return;
     squadGroupedOutput.innerHTML = '';
 
     const query = searchVal.trim().toLowerCase();
@@ -163,7 +252,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (filtered.length === 0) {
       squadGroupedOutput.innerHTML = `
         <div style="text-align: center; padding: 48px 20px; color: var(--text-muted); background: var(--bg-card); border: 1px solid var(--border-card); border-radius: var(--radius-md);">
-          <div style="font-size: 15px; font-weight: 700; color: var(--text-title); margin-bottom: 4px;">Игроков не найдено</div>
+          <div style="font-size: 16px; font-weight: 800; color: #FFFFFF; text-transform: uppercase; margin-bottom: 6px;">Игроков не найдено</div>
           <div style="font-size: 13px;">По запросу «${searchVal}» ничего не найдено в заявке</div>
         </div>
       `;
@@ -185,185 +274,188 @@ document.addEventListener('DOMContentLoaded', () => {
       const groupWrapper = document.createElement('div');
       groupWrapper.className = 'squad-group-section';
 
-      groupWrapper.innerHTML = `
-        <div class="group-header-banner">
-          <div class="group-title-tag">
-            <span>${grp.title}</span>
-          </div>
-          <span class="group-count-badge">${grpPlayers.length}</span>
-        </div>
+      // Group Header
+      const headerDiv = document.createElement('div');
+      headerDiv.className = 'squad-group-header';
+      headerDiv.innerHTML = `
+        <h2 class="squad-group-title">
+          <span>${grp.title}</span>
+          <span class="squad-group-count">${grpPlayers.length}</span>
+        </h2>
       `;
+      groupWrapper.appendChild(headerDiv);
 
       if (currentViewMode === 'table') {
-        // Superliga RFS Clean Table Structure
-        const tableCard = document.createElement('div');
-        tableCard.className = 'squad-table-card';
-        const isGkGroup = grp.key === 'Вратарь';
-
+        // Table Mode
+        const tableWrap = document.createElement('div');
+        tableWrap.className = 'pro-squad-table-wrap';
         let tHtml = `
-          <table class="superliga-roster-table ${isGkGroup ? 'gk-roster-table' : ''}">
+          <table class="pro-squad-table">
             <thead>
               <tr>
-                <th style="width: 44px;">#</th>
-                <th>Игрок</th>
-                <th style="width: 80px;">Возраст</th>
-                <th style="width: 100px;">Амплуа</th>
-                <th style="width: 60px; text-align: center;" title="Сыграно матчей">Игры</th>
-                ${isGkGroup ? `
-                  <th style="width: 70px; text-align: center;" title="Пропущено мячей">Проп.</th>
-                  <th style="width: 75px; text-align: center;" title="Матчи на ноль («сухие»)">На ноль</th>
-                  <th style="width: 75px; text-align: center;" title="Пропущено с 6-метровых (пенальти)">6м (пен)</th>
-                  <th style="width: 75px; text-align: center;" title="Пропущено с 10-метровых (дабл-пенальти)">10м (дабл)</th>
-                ` : `
-                  <th style="width: 60px; text-align: center;">Голы</th>
-                  <th style="width: 60px; text-align: center;">Пасы</th>
-                `}
-                <th style="width: 70px; text-align: right;">Профиль</th>
+                <th style="width: 48px;">№</th>
+                <th style="text-align: left;">Игрок</th>
+                <th>Позиция</th>
+                <th>Возраст</th>
+                <th>OVR</th>
+                <th>Матчи</th>
+                <th>${grp.key === 'Вратарь' ? 'На ноль / Проп' : 'Голы / Пасы'}</th>
               </tr>
             </thead>
             <tbody>
         `;
 
         grpPlayers.forEach(p => {
+          const fut = getPlayerFUTStats(p);
           const initials = getInitials(p.name);
           const hasPhoto = p.photo && p.photo.trim().length > 0;
           const numStr = p.number && p.number !== '—' ? p.number : '—';
-          const ageStr = p.age ? `${p.age}` : '—';
-
-          let statsCells = '';
-          if (isGkGroup) {
-            statsCells = `
-              <td style="text-align: center; font-family: var(--font-display); font-weight: 600;">${p.matches_played ?? 1}</td>
-              <td style="text-align: center; font-family: var(--font-display); font-weight: 800; color: var(--accent-red);">${p.goals_conceded ?? 0}</td>
-              <td style="text-align: center; font-family: var(--font-display); font-weight: 800; color: var(--accent-green);">${p.clean_sheets ?? 0}</td>
-              <td style="text-align: center; font-family: var(--font-display); font-weight: 700; color: var(--text-title);">${p.penalty_6m_conceded ?? 0}</td>
-              <td style="text-align: center; font-family: var(--font-display); font-weight: 700; color: var(--text-title);">${p.penalty_10m_conceded ?? 0}</td>
-            `;
-          } else {
-            statsCells = `
-              <td style="text-align: center; font-family: var(--font-display); font-weight: 600;">${p.matches_played ?? 1}</td>
-              <td style="text-align: center; font-family: var(--font-display); font-weight: 800; color: var(--accent-green);">${p.goals ?? 0}</td>
-              <td style="text-align: center; font-family: var(--font-display); font-weight: 700; color: var(--brand-primary);">${p.assists ?? 0}</td>
-            `;
-          }
+          const statCol = fut.isGk
+            ? `<strong style="color: var(--neon-volt);">${p.clean_sheets ?? 1}</strong> / <span style="color: var(--accent-red);">${p.goals_conceded ?? 0}</span>`
+            : `<strong>${p.goals ?? 0}</strong> / <span>${p.assists ?? 0}</span>`;
 
           tHtml += `
             <tr data-id="${p.id}">
-              <td style="font-family: var(--font-display); font-weight: 800; color: var(--brand-primary);">${numStr}</td>
+              <td style="font-family: var(--font-display); font-weight: 900; color: var(--neon-volt);">${numStr}</td>
               <td>
-                <div class="table-person-cell">
+                <div class="pro-table-person">
                   ${hasPhoto
-              ? `<img src="${p.photo}" class="table-person-thumb" alt="${p.name}" onerror="this.style.display='none'">`
-              : `<div class="table-person-thumb" style="display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:var(--brand-primary);">${initials}</div>`
-            }
-                  <strong style="color: var(--text-title);">${p.name}</strong>
+                    ? `<img src="${p.photo}" class="pro-table-thumb" alt="${p.name}">`
+                    : `<div class="pro-table-initials">${initials}</div>`
+                  }
+                  <strong style="color: #FFFFFF;">${p.name}</strong>
                 </div>
               </td>
-              <td>${ageStr}</td>
-              <td><span class="position-badge ${getPositionBadgeClass(p.position)}">${p.position}</span></td>
-              ${statsCells}
-              <td style="text-align: right;">
-                <button class="t-btn t-btn-secondary" style="height: 28px; padding: 0 10px; font-size: 11px;">Досье</button>
-              </td>
+              <td><span class="fut-pos-badge ${getPosClass(p.position)}">${p.position}</span></td>
+              <td>${p.age ? p.age + ' лет' : '—'}</td>
+              <td><span style="font-family: var(--font-display); font-weight: 800; color: #FFFFFF;">${fut.ovr}</span></td>
+              <td>${p.matches_played ?? 1}</td>
+              <td>${statCol}</td>
             </tr>
           `;
         });
 
         tHtml += `</tbody></table>`;
-        tableCard.innerHTML = tHtml;
+        tableWrap.innerHTML = tHtml;
 
-        tableCard.querySelectorAll('tbody tr').forEach(tr => {
+        tableWrap.querySelectorAll('tbody tr').forEach(tr => {
           const pid = tr.getAttribute('data-id');
           const pObj = data.players.find(x => x.id === pid);
-          if (pObj) {
-            tr.addEventListener('click', () => openModal(pObj));
-
-            const thumb = tr.querySelector('.table-person-thumb');
-            if (thumb && pObj.photo) {
-              thumb.setAttribute('title', `Нажмите для увеличения фото: ${pObj.name}`);
-              thumb.addEventListener('click', (e) => {
-                e.stopPropagation();
-                openPhotoLightbox(
-                  getHighResPhoto(pObj.photo),
-                  `${pObj.name} • ${pObj.position} ${pObj.number && pObj.number !== '—' ? '№' + pObj.number : ''}`,
-                  `${data.team_name} (Нижний Новгород) • Наградион ID ${pObj.id}`
-                );
-              });
-            }
-          }
+          if (pObj) tr.addEventListener('click', () => openModal(pObj));
         });
 
-        groupWrapper.appendChild(tableCard);
+        groupWrapper.appendChild(tableWrap);
       } else {
-        // T-Bank Style 20px Rounded Cards
+        // FUT Cards Grid
         const cardsGrid = document.createElement('div');
-        cardsGrid.className = 'squad-grid-cards';
+        cardsGrid.className = 'fut-cards-grid';
 
         grpPlayers.forEach(p => {
-          const card = document.createElement('div');
-          card.className = 't-player-card';
-          card.setAttribute('data-id', p.id);
-
+          const fut = getPlayerFUTStats(p);
           const initials = getInitials(p.name);
           const hasPhoto = p.photo && p.photo.trim().length > 0;
           const numStr = p.number && p.number !== '—' ? p.number : '—';
-          const ageStr = p.age ? `${p.age} лет` : 'Возраст не указан';
-          const isGk = p.position === 'Вратарь';
+          const posCode = getPosShortCode(p.position);
+          const posCls = getPosClass(p.position);
 
-          const miniStatsHtml = isGk ? `
-            <div class="player-stats-mini-row gk-stats-row">
-              <span class="mini-stat-item" title="Пропущено голов">Проп: <strong style="color: var(--accent-red);">${p.goals_conceded ?? 0}</strong></span>
-              <span class="mini-stat-sep">•</span>
-              <span class="mini-stat-item" title="Матчи на ноль («сухие»)">На ноль: <strong style="color: var(--accent-green);">${p.clean_sheets ?? 0}</strong></span>
-              <span class="mini-stat-sep">•</span>
-              <span class="mini-stat-item" title="Пропущено с 6м (пен) / 10м (дабл)">6м/10м: <strong>${p.penalty_6m_conceded ?? 0}/${p.penalty_10m_conceded ?? 0}</strong></span>
+          // Split surname and first name
+          const nameParts = p.name.trim().split(/\s+/);
+          const surname = nameParts[0] || p.name;
+          const firstName = nameParts.slice(1).join(' ');
+
+          // Stats grid (Hex bars)
+          let statsGridHtml = '';
+          for (const [key, val] of Object.entries(fut.stats)) {
+            statsGridHtml += `
+              <div class="fut-stat-cell">
+                <span class="fut-stat-val">${val}</span>
+                <span class="fut-stat-lbl">${key}</span>
+              </div>
+            `;
+          }
+
+          // Amateur stats ribbon
+          const amateurHtml = fut.isGk ? `
+            <div class="fut-amateur-row">
+              <span class="fut-amateur-item clean-sheet" title="Матчи на ноль">НА НОЛЬ: <strong>${p.clean_sheets ?? 1}</strong></span>
+              <span>•</span>
+              <span class="fut-amateur-item" title="Пропущено голов">ПРОП: <strong>${p.goals_conceded ?? 0}</strong></span>
+              <span>•</span>
+              <span class="fut-amateur-item" title="Пенальти 6м / 10м">ПЕН: <strong>${p.penalty_6m_conceded ?? 0}/${p.penalty_10m_conceded ?? 0}</strong></span>
             </div>
           ` : `
-            <div class="player-stats-mini-row field-stats-row">
-              <span class="mini-stat-item" title="Сыграно матчей">Игры: <strong>${p.matches_played ?? 1}</strong></span>
-              <span class="mini-stat-sep">•</span>
-              <span class="mini-stat-item" title="Забито голов">Голы: <strong style="color: var(--accent-green);">${p.goals ?? 0}</strong></span>
-              <span class="mini-stat-sep">•</span>
-              <span class="mini-stat-item" title="Голевые передачи">Пасы: <strong>${p.assists ?? 0}</strong></span>
+            <div class="fut-amateur-row">
+              <span class="fut-amateur-item" title="Сыграно матчей">ИГРЫ: <strong>${p.matches_played ?? 1}</strong></span>
+              <span>•</span>
+              <span class="fut-amateur-item" title="Забито голов">ГОЛЫ: <strong>${p.goals ?? 0}</strong></span>
+              <span>•</span>
+              <span class="fut-amateur-item" title="Голевые передачи">ПАСЫ: <strong>${p.assists ?? 0}</strong></span>
             </div>
           `;
+
+          const card = document.createElement('div');
+          card.className = 'fut-card';
+          card.setAttribute('data-id', p.id);
 
           card.innerHTML = `
-            <div class="player-portrait-box">
-              ${hasPhoto
-              ? `<img src="${p.photo}" class="player-portrait-img" alt="${p.name}" loading="lazy" onerror="this.outerHTML='<div class=\\'player-portrait-initials\\'>${initials}</div>'">`
-              : `<div class="player-portrait-initials">${initials}</div>`
-            }
-            </div>
-            <div class="player-card-details">
-              <div class="player-name-line">
-                <span class="player-full-name" title="${p.name}">${p.name}</span>
-                <span class="player-jersey-number">${numStr}</span>
+            <div class="fut-card-inner">
+              <div class="fut-hologram"></div>
+              <div class="fut-jersey-watermark">${numStr !== '—' ? numStr : ''}</div>
+
+              <!-- Topbar: OVR + Position + Club -->
+              <div class="fut-card-topbar">
+                <div class="fut-rating-block">
+                  <span class="fut-ovr-number">${fut.ovr}</span>
+                  <span class="fut-pos-badge ${posCls}">${posCode}</span>
+                </div>
+                <img src="${data.team_logo}" alt="Доза Агро" class="fut-club-shield" onerror="this.style.display='none'">
               </div>
-              <div class="player-meta-line">
-                <span class="position-badge ${getPositionBadgeClass(p.position)}">${p.position}</span>
-                <span class="player-age-text">${ageStr}</span>
+
+              <!-- Portrait Area -->
+              <div class="fut-portrait-wrap">
+                ${hasPhoto
+                  ? `<img src="${p.photo}" class="fut-player-img" alt="${p.name}" loading="lazy" onerror="this.outerHTML='<div class=\\'fut-initials-fallback\\'>${initials}</div>'">`
+                  : `<div class="fut-initials-fallback">${initials}</div>`
+                }
               </div>
-              ${miniStatsHtml}
+
+              <!-- Nameplate -->
+              <div class="fut-nameplate">
+                <div class="fut-surname" title="${p.name}">${surname}</div>
+                <div class="fut-firstname">${firstName} • ${p.age ? p.age + ' лет' : '№' + numStr}</div>
+              </div>
+
+              <!-- Attribute Hex Grid -->
+              <div class="fut-stats-grid">
+                ${statsGridHtml}
+              </div>
+
+              <!-- Amateur Stats -->
+              ${amateurHtml}
             </div>
           `;
 
-          card.addEventListener('click', () => openModal(p));
+          // 3D Tilt & Holographic tracking on mousemove
+          card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            const rotateX = ((y - centerY) / centerY) * -10;
+            const rotateY = ((x - centerX) / centerX) * 10;
 
-          const portraitBox = card.querySelector('.player-portrait-box');
-          if (portraitBox) {
-            portraitBox.setAttribute('title', hasPhoto ? `Нажмите, чтобы увеличить фото: ${p.name}` : p.name);
-            portraitBox.addEventListener('click', (e) => {
-              if (hasPhoto) {
-                e.stopPropagation();
-                openPhotoLightbox(
-                  getHighResPhoto(p.photo),
-                  `${p.name} • ${p.position} ${numStr !== '—' ? '№' + numStr : ''}`,
-                  `${data.team_name} (Нижний Новгород) • Наградион ID ${p.id}`
-                );
-              }
-            });
-          }
+            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.03, 1.03, 1.03)`;
+            card.style.setProperty('--mouse-x', `${(x / rect.width) * 100}%`);
+            card.style.setProperty('--mouse-y', `${(y / rect.height) * 100}%`);
+          });
+
+          card.addEventListener('mouseleave', () => {
+            card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+          });
+
+          // Open Modal on click
+          card.addEventListener('click', () => openModal(p));
 
           cardsGrid.appendChild(card);
         });
@@ -375,7 +467,19 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Search input handler
+  // Position filter button listeners
+  if (positionFilters) {
+    positionFilters.querySelectorAll('.t-filter-pill').forEach(btn => {
+      btn.addEventListener('click', () => {
+        positionFilters.querySelectorAll('.t-filter-pill').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentPosition = btn.getAttribute('data-pos');
+        renderSquad();
+      });
+    });
+  }
+
+  // Search field listener
   if (squadSearchField) {
     squadSearchField.addEventListener('input', (e) => {
       searchVal = e.target.value;
@@ -383,44 +487,35 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Position filter pills
-  if (positionFilters) {
-    positionFilters.addEventListener('click', (e) => {
-      const btn = e.target.closest('.t-filter-pill');
-      if (!btn) return;
-      positionFilters.querySelectorAll('.t-filter-pill').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      currentPosition = btn.getAttribute('data-pos');
+  // View mode switcher
+  if (btnModeCards && btnModeTable) {
+    btnModeCards.addEventListener('click', () => {
+      currentViewMode = 'cards';
+      btnModeCards.classList.add('active');
+      btnModeTable.classList.remove('active');
+      renderSquad();
+    });
+
+    btnModeTable.addEventListener('click', () => {
+      currentViewMode = 'table';
+      btnModeTable.classList.add('active');
+      btnModeCards.classList.remove('active');
       renderSquad();
     });
   }
 
-  // View mode switcher (Cards / Table)
-  btnModeCards.addEventListener('click', () => {
-    currentViewMode = 'cards';
-    btnModeCards.classList.add('active');
-    btnModeTable.classList.remove('active');
-    renderSquad();
-  });
-
-  btnModeTable.addEventListener('click', () => {
-    currentViewMode = 'table';
-    btnModeTable.classList.add('active');
-    btnModeCards.classList.remove('active');
-    renderSquad();
-  });
-
   // =========================================================================
-  // 3. CALENDAR & MATCHES (Superliga Schedule Flow)
+  // 4. CALENDAR & MATCHES (Broadcast Cards)
   // =========================================================================
   function renderCalendar() {
+    if (!calendarMatchList) return;
     calendarMatchList.innerHTML = '';
 
     data.matches.forEach(m => {
       const card = document.createElement('div');
       const isCompleted = m.status === 'completed';
       const isNext = m.status === 'next';
-      card.className = `rfs-match-card ${isNext ? 'is-spotlight' : ''} ${isCompleted ? 'is-completed' : ''}`;
+      card.className = `rfs-match-card ${isNext ? 'is-spotlight' : ''}`;
 
       const isDozAHome = m.team1.includes('Доза Агро');
       const isDozAAway = m.team2.includes('Доза Агро');
@@ -429,10 +524,10 @@ document.addEventListener('DOMContentLoaded', () => {
       let statusBadgeColor = 'var(--text-muted)';
       if (isCompleted) {
         statusBadgeText = 'Завершен';
-        statusBadgeColor = 'var(--accent-green)';
+        statusBadgeColor = 'var(--neon-volt)';
       } else if (isNext) {
-        statusBadgeText = 'Ближайший';
-        statusBadgeColor = 'var(--accent-amber)';
+        statusBadgeText = 'Ближайший матч';
+        statusBadgeColor = 'var(--neon-cyan)';
       }
 
       card.innerHTML = `
@@ -454,8 +549,8 @@ document.addEventListener('DOMContentLoaded', () => {
           </div>
 
           <div class="match-score-pill">
-            <div class="score-value-bold" style="${isCompleted ? 'border-color: var(--accent-green);' : ''}">${m.score}</div>
-            <div style="font-size: 10px; font-weight: 800; text-transform: uppercase; color: ${statusBadgeColor};">
+            <div class="score-value-bold" style="${isCompleted ? 'border-color: var(--neon-volt); color: var(--neon-volt);' : ''}">${m.score}</div>
+            <div style="font-size: 10px; font-weight: 800; text-transform: uppercase; color: ${statusBadgeColor}; margin-top: 4px;">
               ${statusBadgeText}
             </div>
           </div>
@@ -470,8 +565,8 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
 
         ${m.note ? `
-          <div style="margin: 8px 0 12px; padding: 8px 12px; background: var(--bg-card-subtle); border: 1px solid var(--border-subtle); border-radius: var(--radius-xs); font-size: 12px; color: var(--text-secondary); display: flex; align-items: center; gap: 8px;">
-            <span>${m.note}</span>
+          <div style="margin: 8px 0 14px; padding: 10px 14px; background: rgba(212, 255, 0, 0.05); border: 1px solid var(--border-neon); border-radius: var(--radius-xs); font-size: 12px; color: #FFFFFF; display: flex; align-items: center; gap: 8px;">
+            <strong style="color: var(--neon-volt);">Стена команды:</strong> <span>${m.note}</span>
           </div>
         ` : ''}
 
@@ -482,11 +577,11 @@ document.addEventListener('DOMContentLoaded', () => {
           </div>
 
           <div style="display: flex; gap: 8px;">
-            <a href="${data.tournament_url}/match/${m.match_id}" target="_blank" rel="noopener" class="t-btn ${isCompleted ? 't-btn-primary' : 't-btn-secondary'}" style="height: 32px; padding: 0 12px; font-size: 12px;">
+            <a href="${data.tournament_url}/match/${m.match_id}" target="_blank" rel="noopener" class="pro-btn" style="background: rgba(255,255,255,0.06); color: #fff; border: 1px solid var(--border-card); font-size: 11px; padding: 6px 12px;">
               ${isCompleted ? 'Протокол матча' : 'Превью матча'}
             </a>
             ${isNext ? `
-              <button class="t-btn t-btn-primary" style="height: 32px; padding: 0 12px; font-size: 12px;" onclick="window.downloadICS('${m.team1}', '${m.team2}', '${m.venue}')">
+              <button class="pro-btn btn-neon" style="font-size: 11px; padding: 6px 12px;" onclick="window.downloadICS('${m.team1}', '${m.team2}', '${m.venue}')">
                 + В календарь
               </button>
             ` : ''}
@@ -499,9 +594,10 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // =========================================================================
-  // 4. STANDINGS TABLE (Superliga Structure)
+  // 5. STANDINGS TABLE (Serie A / Champions League)
   // =========================================================================
   function renderStandings() {
+    if (!leagueStandingsBody) return;
     leagueStandingsBody.innerHTML = '';
 
     data.standings.forEach(row => {
@@ -516,16 +612,16 @@ document.addEventListener('DOMContentLoaded', () => {
       }).join('');
 
       tr.innerHTML = `
-        <td><span style="font-weight: 800; color: var(--text-muted);">${row.pos}</span></td>
+        <td><span style="font-family: var(--font-display); font-weight: 800; color: ${row.pos <= 3 ? 'var(--neon-amber)' : 'var(--text-muted)'};">${row.pos}</span></td>
         <td class="col-club-left">
-          <div class="club-cell-content" style="display: flex; align-items: center; gap: 10px;">
+          <div style="display: flex; align-items: center; gap: 10px; text-align: left;">
             ${row.shield ? `
-              <img src="${row.shield}" alt="${row.team}" style="width: 26px; height: 26px; object-fit: contain; border-radius: 4px; background: #ffffff; padding: 1px; border: 1px solid var(--border-subtle); flex-shrink: 0;" onerror="this.style.display='none'">
+              <img src="${row.shield}" alt="${row.team}" style="width: 28px; height: 28px; object-fit: contain; border-radius: 4px; background: #ffffff; padding: 2px; border: 1px solid var(--border-subtle); flex-shrink: 0;" onerror="this.style.display='none'">
             ` : `
-              <div style="width: 26px; height: 26px; border-radius: 4px; background: var(--bg-card-subtle); border: 1px solid var(--border-subtle); color: var(--brand-primary); font-family: var(--font-display); font-size: 10px; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">${row.team.slice(0, 2).toUpperCase()}</div>
+              <div style="width: 28px; height: 28px; border-radius: 4px; background: var(--bg-card-subtle); border: 1px solid var(--border-subtle); color: var(--neon-volt); font-family: var(--font-display); font-size: 10px; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">${row.team.slice(0, 2).toUpperCase()}</div>
             `}
             <div>
-              <strong style="color: var(--text-title); display: block; line-height: 1.2;">${row.team}</strong>
+              <strong style="color: ${isMyTeam ? 'var(--neon-volt)' : '#FFFFFF'}; display: block; line-height: 1.2;">${row.team}</strong>
               <span style="font-size: 11px; color: var(--text-muted);">(${row.city})</span>
             </div>
           </div>
@@ -535,7 +631,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <td>${row.d}</td>
         <td>${row.l}</td>
         <td>${row.goals}</td>
-        <td style="color: ${row.diff.startsWith('+') ? 'var(--accent-green)' : (row.diff.startsWith('-') ? 'var(--accent-red)' : 'inherit')};">${row.diff}</td>
+        <td style="color: ${row.diff.startsWith('+') ? 'var(--neon-volt)' : (row.diff.startsWith('-') ? 'var(--accent-red)' : 'inherit')}; font-weight: 700;">${row.diff}</td>
         <td class="standings-pts-bold">${row.points}</td>
         <td>
           <div style="display: flex; gap: 3px; justify-content: center;">${formHtml}</div>
@@ -547,7 +643,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // =========================================================================
-  // 5. TABS INTERACTION
+  // 6. TABS NAVIGATION
   // =========================================================================
   tabButtons.forEach(btn => {
     btn.addEventListener('click', () => {
@@ -562,143 +658,179 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Tactical Board Click Connect
-  document.querySelectorAll('.court-player-pin').forEach(pin => {
-    pin.addEventListener('click', () => {
-      const pName = pin.getAttribute('data-player-name');
-      const found = data.players.find(p => p.name.includes(pName));
-      if (found) {
-        openModal(found);
+  // =========================================================================
+  // 7. TACTICAL PITCH 5x5 (Cyber Formations)
+  // =========================================================================
+  const formations = {
+    diamond: {
+      pinGk: { top: '86%', left: '50%' },
+      pinDef: { top: '65%', left: '50%' },
+      pinLw: { top: '42%', left: '22%' },
+      pinRw: { top: '42%', left: '78%' },
+      pinFwd: { top: '18%', left: '50%' }
+    },
+    box: {
+      pinGk: { top: '86%', left: '50%' },
+      pinDef: { top: '62%', left: '30%' },
+      pinLw: { top: '62%', left: '70%' },
+      pinRw: { top: '25%', left: '30%' },
+      pinFwd: { top: '25%', left: '70%' }
+    },
+    pyramid: {
+      pinGk: { top: '86%', left: '50%' },
+      pinLw: { top: '62%', left: '20%' },
+      pinDef: { top: '66%', left: '50%' },
+      pinRw: { top: '62%', left: '80%' },
+      pinFwd: { top: '20%', left: '50%' }
+    }
+  };
+
+  const formationBtns = document.querySelectorAll('.formation-btn');
+  formationBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      formationBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const formKey = btn.getAttribute('data-formation');
+      const cfg = formations[formKey];
+      if (!cfg) return;
+
+      for (const [pinId, coords] of Object.entries(cfg)) {
+        const pinEl = document.getElementById(pinId);
+        if (pinEl) {
+          pinEl.style.top = coords.top;
+          pinEl.style.left = coords.left;
+        }
       }
     });
   });
 
+  // Click player pin on tactical court opens player modal
+  document.querySelectorAll('.court-player-pin').forEach(pin => {
+    pin.addEventListener('click', () => {
+      const pName = pin.getAttribute('data-player-name');
+      const found = data.players.find(p => p.name.includes(pName));
+      if (found) openModal(found);
+    });
+  });
+
   // =========================================================================
-  // 6. PLAYER DOSSIER MODAL (T-Bank Style Clean Sheet)
+  // 8. LIVE COUNTDOWN TIMER (Next Match)
   // =========================================================================
-  function openModal(p) {
-    const hasPhoto = p.photo && p.photo.trim().length > 0;
-    const initials = getInitials(p.name);
-    const numDisplay = p.number && p.number !== '—' ? `№ ${p.number}` : 'Без номера';
-    const ageDisplay = p.age ? `${p.age} лет` : '—';
+  function startCountdown() {
+    // Next match: 26 October 2026, 19:30 MSK
+    const targetDate = new Date('2026-10-26T19:30:00+03:00').getTime();
 
-    const isGk = p.position === 'Вратарь';
+    const cdDays = document.getElementById('cdDays');
+    const cdHours = document.getElementById('cdHours');
+    const cdMins = document.getElementById('cdMins');
+    const cdSecs = document.getElementById('cdSecs');
 
-    let statsMatrixHtml = '';
-    let extraStatsRows = '';
+    if (!cdDays || !cdHours || !cdMins || !cdSecs) return;
 
-    if (isGk) {
-      statsMatrixHtml = `
-        <div class="modal-stats-matrix gk-matrix">
-          <div>
-            <div class="modal-stat-value">${p.matches_played ?? 1}</div>
-            <div class="modal-stat-label">Матчи</div>
-          </div>
-          <div>
-            <div class="modal-stat-value" style="color: var(--accent-red);">${p.goals_conceded ?? 0}</div>
-            <div class="modal-stat-label">Пропущено</div>
-          </div>
-          <div>
-            <div class="modal-stat-value" style="color: var(--accent-green);">${p.clean_sheets ?? 0}</div>
-            <div class="modal-stat-label">На ноль</div>
-          </div>
-          <div>
-            <div class="modal-stat-value" style="color: var(--text-title);">${p.penalty_6m_conceded ?? 0}</div>
-            <div class="modal-stat-label">С 6м (пен)</div>
-          </div>
-          <div>
-            <div class="modal-stat-value" style="color: var(--text-title);">${p.penalty_10m_conceded ?? 0}</div>
-            <div class="modal-stat-label">С 10м (дабл)</div>
-          </div>
-        </div>
-      `;
+    function update() {
+      const now = new Date().getTime();
+      let diff = targetDate - now;
 
-      extraStatsRows = `
-        <div style="display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid var(--border-subtle);">
-          <span style="color: var(--text-muted);">Пропущено голов:</span>
-          <strong style="color: var(--accent-red); font-family: var(--font-display); font-size: 14px;">${p.goals_conceded ?? 0}</strong>
-        </div>
-        <div style="display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid var(--border-subtle);">
-          <span style="color: var(--text-muted);">Матчей на ноль («сухие»):</span>
-          <strong style="color: var(--accent-green); font-family: var(--font-display); font-size: 14px;">${p.clean_sheets ?? 0}</strong>
-        </div>
-        <div style="display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid var(--border-subtle);">
-          <span style="color: var(--text-muted);">Пропущено с 6 метров (пенальти):</span>
-          <strong style="color: var(--text-title); font-family: var(--font-display); font-size: 14px;">${p.penalty_6m_conceded ?? 0}</strong>
-        </div>
-        <div style="display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid var(--border-subtle);">
-          <span style="color: var(--text-muted);">Пропущено с 10 метров (дабл-пенальти):</span>
-          <strong style="color: var(--text-title); font-family: var(--font-display); font-size: 14px;">${p.penalty_10m_conceded ?? 0}</strong>
-        </div>
-      `;
-    } else {
-      statsMatrixHtml = `
-        <div class="modal-stats-matrix">
-          <div>
-            <div class="modal-stat-value">${p.matches_played ?? 1}</div>
-            <div class="modal-stat-label">Матчи</div>
-          </div>
-          <div>
-            <div class="modal-stat-value" style="color: var(--accent-green);">${p.goals ?? 0}</div>
-            <div class="modal-stat-label">Голы</div>
-          </div>
-          <div>
-            <div class="modal-stat-value" style="color: var(--brand-primary);">${p.assists ?? 0}</div>
-            <div class="modal-stat-label">Пасы</div>
-          </div>
-          <div>
-            <div class="modal-stat-value" style="color: var(--accent-amber);">${p.yellow_cards ?? 0} / ${p.red_cards ?? 0}</div>
-            <div class="modal-stat-label">ЖК / КК</div>
-          </div>
-        </div>
-      `;
+      if (diff <= 0) {
+        cdDays.textContent = '00';
+        cdHours.textContent = '00';
+        cdMins.textContent = '00';
+        cdSecs.textContent = '00';
+        return;
+      }
 
-      extraStatsRows = `
-        <div style="display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid var(--border-subtle);">
-          <span style="color: var(--text-muted);">Забитые голы:</span>
-          <strong style="color: var(--accent-green); font-family: var(--font-display); font-size: 14px;">${p.goals ?? 0}</strong>
-        </div>
-        <div style="display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid var(--border-subtle);">
-          <span style="color: var(--text-muted);">Голевые передачи:</span>
-          <strong style="color: var(--brand-primary); font-family: var(--font-display); font-size: 14px;">${p.assists ?? 0}</strong>
-        </div>
-      `;
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const secs = Math.floor((diff % (1000 * 60)) / 1000);
+
+      cdDays.textContent = String(days).padStart(2, '0');
+      cdHours.textContent = String(hours).padStart(2, '0');
+      cdMins.textContent = String(mins).padStart(2, '0');
+      cdSecs.textContent = String(secs).padStart(2, '0');
     }
 
+    update();
+    setInterval(update, 1000);
+  }
+
+  // =========================================================================
+  // 9. PLAYER DOSSIER MODAL
+  // =========================================================================
+  function openModal(p) {
+    if (!playerModal || !playerModalBody) return;
+
+    const fut = getPlayerFUTStats(p);
+    const initials = getInitials(p.name);
+    const hasPhoto = p.photo && p.photo.trim().length > 0;
+    const numStr = p.number && p.number !== '—' ? '№' + p.number : '—';
+    const isGk = p.position === 'Вратарь';
+
+    const ageDisplay = p.age ? `${p.age} лет` : 'Не указан';
+
+    const extraStatsRows = isGk ? `
+      <div style="display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid var(--border-subtle);">
+        <span style="color: var(--text-muted);">Матчи «на ноль»:</span>
+        <strong style="color: var(--neon-volt);">${p.clean_sheets ?? 1} (100% сухая серия)</strong>
+      </div>
+      <div style="display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid var(--border-subtle);">
+        <span style="color: var(--text-muted);">Пропущено голов:</span>
+        <strong style="color: var(--neon-volt);">${p.goals_conceded ?? 0}</strong>
+      </div>
+      <div style="display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid var(--border-subtle);">
+        <span style="color: var(--text-muted);">Пропущено с 6 метров (пенальти):</span>
+        <strong style="color: #FFFFFF;">${p.penalty_6m_conceded ?? 0}</strong>
+      </div>
+      <div style="display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid var(--border-subtle);">
+        <span style="color: var(--text-muted);">Пропущено с 10 метров (дабл-пен):</span>
+        <strong style="color: #FFFFFF;">${p.penalty_10m_conceded ?? 0}</strong>
+      </div>
+    ` : `
+      <div style="display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid var(--border-subtle);">
+        <span style="color: var(--text-muted);">Сыграно матчей:</span>
+        <strong style="color: #FFFFFF;">${p.matches_played ?? 1}</strong>
+      </div>
+      <div style="display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid var(--border-subtle);">
+        <span style="color: var(--text-muted);">Забито голов:</span>
+        <strong style="color: var(--neon-volt);">${p.goals ?? 0}</strong>
+      </div>
+      <div style="display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid var(--border-subtle);">
+        <span style="color: var(--text-muted);">Голевые передачи:</span>
+        <strong style="color: #FFFFFF;">${p.assists ?? 0}</strong>
+      </div>
+    `;
+
     playerModalBody.innerHTML = `
-      <div class="modal-player-overview">
-        <div class="modal-player-pic">
+      <div style="display: flex; align-items: center; gap: 20px; margin-bottom: 24px; padding-bottom: 18px; border-bottom: 1px solid var(--border-card);">
+        <div style="width: 80px; height: 80px; border-radius: var(--radius-md); background: #1B2135; border: 2px solid var(--neon-volt); overflow: hidden; flex-shrink: 0; display: flex; align-items: center; justify-content: center; cursor: pointer;" title="Нажмите для увеличения фото">
           ${hasPhoto
-        ? `<img src="${p.photo}" alt="${p.name}" onerror="this.outerHTML='<div style=\\'display:flex;align-items:center;justify-content:center;height:100%;font-size:22px;font-weight:800;color:var(--brand-primary);\\'>${initials}</div>'">`
-        : `<div style="display:flex;align-items:center;justify-content:center;height:100%;font-size:22px;font-weight:800;color:var(--brand-primary);">${initials}</div>`
-      }
+            ? `<img src="${p.photo}" alt="${p.name}" style="width:100%;height:100%;object-fit:cover;">`
+            : `<span style="font-family: var(--font-display); font-size: 24px; font-weight: 900; color: var(--neon-volt);">${initials}</span>`
+          }
         </div>
         <div>
-          <h2 style="font-size: 18px; font-weight: 800; color: var(--text-title); margin-bottom: 4px;">${p.name}</h2>
-          <div style="font-family: var(--font-display); font-size: 13px; font-weight: 800; color: var(--brand-primary); margin-bottom: 6px;">${numDisplay}</div>
-          <span class="position-badge ${getPositionBadgeClass(p.position)}">${p.position}</span>
+          <h2 style="font-family: var(--font-display); font-size: 22px; font-weight: 900; color: #FFFFFF; text-transform: uppercase; line-height: 1.1; margin-bottom: 6px;">${p.name}</h2>
+          <div style="display: flex; gap: 8px; align-items: center;">
+            <span class="pro-pill pill-neon">${p.position}</span>
+            <span style="font-family: var(--font-display); font-size: 14px; font-weight: 800; color: var(--neon-cyan);">OVR ${fut.ovr}</span>
+            <span style="font-size: 13px; color: var(--text-muted); font-weight: 700;">${numStr}</span>
+          </div>
         </div>
       </div>
 
-      ${statsMatrixHtml}
-
-      <div style="margin-top: 18px; font-size: 13px; line-height: 1.6; color: var(--text-body);">
-        <div style="display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid var(--border-subtle);">
+      <div style="font-size: 13px;">
+        <div style="display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid var(--border-subtle);">
           <span style="color: var(--text-muted);">Команда:</span>
-          <strong style="color: var(--text-title);">${data.team_name} (Нижний Новгород)</strong>
+          <strong style="color: #FFFFFF;">МФК «Доза Агро»</strong>
         </div>
-        <div style="display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid var(--border-subtle);">
-          <span style="color: var(--text-muted);">Турнир:</span>
-          <strong style="color: var(--text-title);">${data.tournament}</strong>
-        </div>
-        <div style="display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid var(--border-subtle);">
+        <div style="display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid var(--border-subtle);">
           <span style="color: var(--text-muted);">Возраст:</span>
-          <strong style="color: var(--text-title);">${ageDisplay}</strong>
+          <strong style="color: #FFFFFF;">${ageDisplay}</strong>
         </div>
         ${extraStatsRows}
-        <div style="display: flex; justify-content: space-between; padding: 8px 0;">
+        <div style="display: flex; justify-content: space-between; padding: 10px 0;">
           <span style="color: var(--text-muted);">В базе Наградион:</span>
-          <a href="${data.tournament_url}/player/${p.id}" target="_blank" rel="noopener" style="color: var(--brand-primary); font-weight: 700; text-decoration: underline;">
+          <a href="${data.tournament_url}/player/${p.id}" target="_blank" rel="noopener" style="color: var(--neon-volt); font-weight: 700; text-decoration: underline;">
             ID ${p.id}
           </a>
         </div>
@@ -708,102 +840,97 @@ document.addEventListener('DOMContentLoaded', () => {
     playerModal.classList.add('active');
     document.body.style.overflow = 'hidden';
 
-    // Click photo in modal to open full-res lightbox
-    const modalPic = playerModalBody.querySelector('.modal-player-pic');
+    // Click photo in modal to open lightbox
+    const modalPic = playerModalBody.querySelector('img');
     if (modalPic && hasPhoto) {
-      modalPic.setAttribute('title', 'Нажмите, чтобы открыть фотографию в полном размере');
       modalPic.addEventListener('click', () => {
         openPhotoLightbox(
           getHighResPhoto(p.photo),
-          `${p.name} • ${p.position} ${numDisplay}`,
-          `${data.team_name} (Нижний Новгород) • Наградион ID ${p.id}`
+          `${p.name} • ${p.position} ${numStr}`,
+          `${data.team_name} • Наградион ID ${p.id}`
         );
       });
     }
   }
 
-  function closePlayerModal() {
+  function closeModal() {
+    if (!playerModal) return;
     playerModal.classList.remove('active');
-    if (!photoLightbox || !photoLightbox.classList.contains('active')) {
-      document.body.style.overflow = '';
-    }
+    document.body.style.overflow = '';
   }
 
-  btnClosePlayerModal.addEventListener('click', closePlayerModal);
+  if (btnClosePlayerModal) {
+    btnClosePlayerModal.addEventListener('click', closeModal);
+  }
 
-  playerModal.addEventListener('click', (e) => {
-    if (e.target === playerModal) {
-      closePlayerModal();
-    }
-  });
+  if (playerModal) {
+    playerModal.addEventListener('click', (e) => {
+      if (e.target === playerModal) closeModal();
+    });
+  }
 
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
       if (photoLightbox && photoLightbox.classList.contains('active')) {
         closePhotoLightbox();
-      } else if (playerModal && playerModal.classList.contains('active')) {
-        closePlayerModal();
+      } else {
+        closeModal();
       }
     }
   });
 
   // =========================================================================
-  // 7. CALENDAR EXPORT (.ICS)
+  // 10. BACKGROUND ATMOSPHERE SWITCHER
+  // =========================================================================
+  const bgThemeSelect = document.getElementById('bgThemeSelect');
+  if (bgThemeSelect) {
+    const savedBg = localStorage.getItem('doza_bg_theme') || 'stadium-dark';
+    bgThemeSelect.value = savedBg;
+    document.body.setAttribute('data-bg', savedBg);
+
+    bgThemeSelect.addEventListener('change', (e) => {
+      const val = e.target.value;
+      document.body.setAttribute('data-bg', val);
+      localStorage.setItem('doza_bg_theme', val);
+    });
+  }
+
+  // =========================================================================
+  // 11. CALENDAR EXPORT (.ICS)
   // =========================================================================
   window.downloadICS = function (team1, team2, venue) {
     const icsContent = [
       'BEGIN:VCALENDAR',
       'VERSION:2.0',
-      'PRODID:-//NNDEPSPORT//RU',
+      'PRODID:-//NNDEPSPORT//Doza Agro Match//RU',
       'CALSCALE:GREGORIAN',
       'METHOD:PUBLISH',
       'BEGIN:VEVENT',
-      'SUMMARY:Матч: ' + team1 + ' vs ' + team2,
-      'DESCRIPTION:Матч Первой лиги по мини-футболу. Подробнее: ' + data.tournament_url,
-      'LOCATION:' + venue + ', Нижний Новгород',
-      'DTSTART:20261019T181000Z', // 21:10 MSK is 18:10 UTC
-      'DTEND:20261019T192000Z',
+      'SUMMARY:' + team1 + ' - ' + team2 + ' (Первая лига)',
+      'DESCRIPTION:Матч Чемпионата Нижнего Новгорода по мини-футболу (Футзал 5х5)',
+      'LOCATION:' + venue + ' Нижний Новгород',
+      'DTSTART:20261026T163000Z',
+      'DTEND:20261026T174500Z',
       'STATUS:CONFIRMED',
       'END:VEVENT',
       'END:VCALENDAR'
     ].join('\r\n');
 
     const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
-    link.href = window.URL.createObjectURL(blob);
+    link.href = url;
     link.setAttribute('download', 'match_doza_agro.ics');
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
   };
 
-  if (btnDownloadIcs) {
-    btnDownloadIcs.addEventListener('click', () => {
-      window.downloadICS('Продтерминал', 'Доза Агро', 'ФОК «Приокский»');
-    });
-  }
-
-  // Background Theme Switcher
-  const bgThemeSelect = document.getElementById('bgThemeSelect');
-  function applyBgTheme(theme) {
-    document.body.classList.remove('bg-modern-cyan', 'bg-modern-azure', 'bg-classic', 'bg-none');
-    document.body.classList.add(`bg-${theme}`);
-  }
-
-  if (bgThemeSelect) {
-    const savedBg = localStorage.getItem('site_bg_mode') || 'classic';
-    bgThemeSelect.value = savedBg;
-    applyBgTheme(savedBg);
-
-    bgThemeSelect.addEventListener('change', (e) => {
-      const val = e.target.value;
-      localStorage.setItem('site_bg_mode', val);
-      applyBgTheme(val);
-    });
-  }
-
-  // Initial render
+  // =========================================================================
+  // 12. INITIALIZATION
+  // =========================================================================
   renderSquad();
   renderCalendar();
   renderStandings();
+  startCountdown();
 });
