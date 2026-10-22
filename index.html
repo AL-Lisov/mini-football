@@ -35,7 +35,8 @@
         </div>
       </a>
 
-      <nav class="header-nav">
+      <!-- Desktop Nav (Hidden on Mobile) -->
+      <nav class="header-nav header-nav--desktop">
         <a href="https://nndepsport.nagradion.ru/tournament46746" target="_blank" rel="noopener" class="nav-link">Турнир</a>
         <a href="https://nndepsport.nagradion.ru/tournament46746/calendar" target="_blank" rel="noopener" class="nav-link">Календарь</a>
         <a href="https://nndepsport.nagradion.ru/tournament46746/table" target="_blank" rel="noopener" class="nav-link">Таблица</a>
@@ -59,6 +60,45 @@
           </select>
         </div>
       </nav>
+
+      <!-- Mobile Burger Button (Visible on Mobile only) -->
+      <button class="mobile__burger" id="mobileBurgerBtn" aria-label="Меню навигации" aria-expanded="false">
+        <span class="burger-bar"></span>
+        <span class="burger-bar"></span>
+        <span class="burger-bar"></span>
+      </button>
+    </div>
+
+    <!-- Mobile Dropdown Menu -->
+    <div class="mobile__menu" id="mobileMenu">
+      <div class="mobile__menu-inner">
+        <a href="https://nndepsport.nagradion.ru/tournament46746" target="_blank" rel="noopener" class="mobile-nav-link">
+          <span>Турнир (Первая лига 2026/27)</span>
+          <span class="mobile-nav-arrow">→</span>
+        </a>
+        <a href="https://nndepsport.nagradion.ru/tournament46746/calendar" target="_blank" rel="noopener" class="mobile-nav-link">
+          <span>Календарь игр турнира</span>
+          <span class="mobile-nav-arrow">→</span>
+        </a>
+        <a href="https://nndepsport.nagradion.ru/tournament46746/table" target="_blank" rel="noopener" class="mobile-nav-link">
+          <span>Турнирная таблица</span>
+          <span class="mobile-nav-arrow">→</span>
+        </a>
+        <a href="https://nndepsport.nagradion.ru/tournament46746/team/448703/players" target="_blank" rel="noopener" class="mobile-nav-link mobile-nav-link--highlight">
+          <span>Официальный Наградион</span>
+          <span class="mobile-nav-arrow">→</span>
+        </a>
+
+        <div class="mobile-bg-switch">
+          <label for="bgThemeSelectMobile" class="mobile-bg-label">Визуальная атмосфера:</label>
+          <select id="bgThemeSelectMobile" class="mobile-bg-select">
+            <option value="stadium-dark" selected>Stadium Cyber Dark (Неон & Графит)</option>
+            <option value="classic">Классический ННДЕПСПОРТ (2014)</option>
+            <option value="modern-cyan">Лазурный неон (2026)</option>
+            <option value="minimal-black">Absolute Black (Монохром)</option>
+          </select>
+        </div>
+      </div>
     </div>
   </header>
 

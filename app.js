@@ -931,18 +931,62 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // =========================================================================
-  // 10. BACKGROUND ATMOSPHERE SWITCHER
+  // 10. BACKGROUND ATMOSPHERE SWITCHER & MOBILE BURGER MENU
   // =========================================================================
   const bgThemeSelect = document.getElementById('bgThemeSelect');
-  if (bgThemeSelect) {
-    const savedBg = localStorage.getItem('doza_bg_theme') || 'stadium-dark';
-    bgThemeSelect.value = savedBg;
-    document.body.setAttribute('data-bg', savedBg);
+  const bgThemeSelectMobile = document.getElementById('bgThemeSelectMobile');
+  const mobileBurgerBtn = document.getElementById('mobileBurgerBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
 
+  // Background Theme Sync
+  const savedBg = localStorage.getItem('doza_bg_theme') || 'stadium-dark';
+  document.body.setAttribute('data-bg', savedBg);
+
+  if (bgThemeSelect) {
+    bgThemeSelect.value = savedBg;
     bgThemeSelect.addEventListener('change', (e) => {
       const val = e.target.value;
       document.body.setAttribute('data-bg', val);
+      if (bgThemeSelectMobile) bgThemeSelectMobile.value = val;
       localStorage.setItem('doza_bg_theme', val);
+    });
+  }
+
+  if (bgThemeSelectMobile) {
+    bgThemeSelectMobile.value = savedBg;
+    bgThemeSelectMobile.addEventListener('change', (e) => {
+      const val = e.target.value;
+      document.body.setAttribute('data-bg', val);
+      if (bgThemeSelect) bgThemeSelect.value = val;
+      localStorage.setItem('doza_bg_theme', val);
+    });
+  }
+
+  // Mobile Burger & Menu Controller
+  if (mobileBurgerBtn && mobileMenu) {
+    mobileBurgerBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = mobileMenu.classList.toggle('is-open');
+      mobileBurgerBtn.classList.toggle('is-active', isOpen);
+      mobileBurgerBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+
+    // Close when clicking any link inside mobile menu
+    mobileMenu.querySelectorAll('.mobile-nav-link').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.remove('is-open');
+        mobileBurgerBtn.classList.remove('is-active');
+        mobileBurgerBtn.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    // Close on click outside
+    document.addEventListener('click', (e) => {
+      if (!mobileMenu.contains(e.target) && e.target !== mobileBurgerBtn && !mobileBurgerBtn.contains(e.target)) {
+        mobileMenu.classList.remove('is-open');
+        mobileBurgerBtn.classList.remove('is-active');
+        mobileBurgerBtn.setAttribute('aria-expanded', 'false');
+      }
     });
   }
 

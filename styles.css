@@ -290,6 +290,140 @@ button, input, select {
 }
 
 /* --------------------------------------------------------------------------
+   3.1 MOBILE BURGER & DROPDOWN MENU
+   -------------------------------------------------------------------------- */
+.mobile__burger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 38px;
+  height: 38px;
+  padding: 8px 7px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-xs);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.mobile__burger:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.burger-bar {
+  width: 100%;
+  height: 2px;
+  background: #FFFFFF;
+  border-radius: 2px;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.mobile__burger.is-active .burger-bar:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+  background: var(--neon-volt);
+}
+
+.mobile__burger.is-active .burger-bar:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+
+.mobile__burger.is-active .burger-bar:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+  background: var(--neon-volt);
+}
+
+/* Mobile Dropdown Menu */
+.mobile__menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: rgba(10, 12, 18, 0.98);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 2px solid var(--neon-volt);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.9);
+  z-index: 150;
+}
+
+.mobile__menu.is-open {
+  display: block;
+  animation: menuSlideDown 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes menuSlideDown {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.mobile__menu-inner {
+  display: flex;
+  flex-direction: column;
+}
+
+.mobile-nav-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 20px;
+  font-family: var(--font-condensed);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-title);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  transition: all 0.15s ease;
+}
+
+.mobile-nav-link:hover,
+.mobile-nav-link:active {
+  background: rgba(212, 255, 0, 0.08);
+  color: var(--neon-volt);
+}
+
+.mobile-nav-link--highlight {
+  color: var(--neon-volt);
+  background: rgba(212, 255, 0, 0.03);
+}
+
+.mobile-nav-arrow {
+  color: var(--text-caption);
+  font-size: 14px;
+}
+
+.mobile-bg-switch {
+  padding: 16px 20px;
+  background: rgba(255, 255, 255, 0.02);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.mobile-bg-label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.mobile-bg-select {
+  width: 100%;
+  background: #141826;
+  color: #FFFFFF;
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-xs);
+  padding: 10px 12px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* --------------------------------------------------------------------------
    4. MAIN WRAPPER & BREADCRUMBS
    -------------------------------------------------------------------------- */
 .main-wrapper {
@@ -2211,14 +2345,42 @@ button, input, select {
 }
 
 @media (max-width: 768px) {
-  .header-container {
-    flex-direction: column;
-    align-items: flex-start;
+  .site-header {
+    padding: 0;
   }
-  .header-nav {
-    width: 100%;
-    justify-content: space-between;
-    flex-wrap: wrap;
+  .header-container {
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    padding: 10px 16px !important;
+    gap: 12px !important;
+  }
+  .header-brand {
+    gap: 10px !important;
+    flex: 1;
+    overflow: hidden;
+  }
+  .brand-emblem {
+    width: 36px !important;
+    height: 36px !important;
+  }
+  .brand-title {
+    font-size: 11px !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+  }
+  .brand-subtitle {
+    font-size: 9px !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+  }
+  .header-nav--desktop {
+    display: none !important;
+  }
+  .mobile__burger {
+    display: flex !important;
   }
   .club-hero-showcase {
     padding: 24px 20px;
