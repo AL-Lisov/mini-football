@@ -678,11 +678,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // Toggle drawer on click
       tr.addEventListener('click', () => {
-        const isCurrentlyOpen = drawerTr.style.display !== 'none' && drawerTr.style.display !== '';
-        document.querySelectorAll('.standings-drawer-row').forEach(d => d.style.display = 'none');
-        document.querySelectorAll('.standings-team-row').forEach(r => r.classList.remove('is-expanded'));
+        const isOpen = drawerTr.classList.contains('is-open');
 
-        if (!isCurrentlyOpen) {
+        // Close all drawers and un-highlight rows
+        document.querySelectorAll('.standings-drawer-row').forEach(d => {
+          d.classList.remove('is-open');
+          d.style.display = 'none';
+        });
+        document.querySelectorAll('.standings-team-row').forEach(r => {
+          r.classList.remove('is-expanded');
+        });
+
+        // Open clicked team drawer if it was not already open
+        if (!isOpen) {
+          drawerTr.classList.add('is-open');
           drawerTr.style.display = window.innerWidth <= 640 ? 'block' : 'table-row';
           tr.classList.add('is-expanded');
         }

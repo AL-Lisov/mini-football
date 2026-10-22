@@ -1154,6 +1154,11 @@ button, input, select {
   color: #6B7280;
 }
 
+.bianconeri-block--light .standings-mobile-tap-hint {
+  color: #4B5563;
+  font-weight: 600;
+}
+
 .bianconeri-block--light .superliga-standings-table th {
   background: #0F121C;
   color: #FFFFFF;
@@ -2710,6 +2715,8 @@ button, input, select {
 /* Expandable Drawer Row */
 .standings-team-row {
   cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
   transition: background 0.15s ease;
 }
 
@@ -2718,7 +2725,15 @@ button, input, select {
 }
 
 .standings-team-row.is-expanded {
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.standings-drawer-row {
+  display: none;
+}
+
+.standings-drawer-row.is-open {
+  display: table-row;
 }
 
 .standings-drawer-cell {
@@ -3458,12 +3473,16 @@ button, input, select {
     color: var(--neon-volt) !important;
   }
 
-  /* Expandable Drawer Row as Block (Never Breaks Columns) */
+  /* Expandable Drawer Row as Block (Hidden by default, shown when .is-open) */
   .superliga-standings-table tr.standings-drawer-row {
-    display: block !important;
+    display: none !important;
     width: 100% !important;
     box-sizing: border-box !important;
     background: #F8FAFC !important;
+  }
+
+  .superliga-standings-table tr.standings-drawer-row.is-open {
+    display: block !important;
   }
 
   .standings-drawer-cell {
