@@ -293,13 +293,13 @@ document.addEventListener('DOMContentLoaded', () => {
           <table class="pro-squad-table">
             <thead>
               <tr>
-                <th style="width: 48px;">№</th>
-                <th style="text-align: left;">Игрок</th>
-                <th>Позиция</th>
-                <th>Возраст</th>
-                <th>OVR</th>
-                <th>Матчи</th>
-                <th>${grp.key === 'Вратарь' ? 'На ноль / Проп' : 'Голы / Пасы'}</th>
+                <th class="col-sq-num">№</th>
+                <th class="col-sq-player" style="text-align: left;">Игрок</th>
+                <th class="col-sq-pos">Позиция</th>
+                <th class="col-sq-age">Возраст</th>
+                <th class="col-sq-ovr">OVR</th>
+                <th class="col-sq-matches">Матчи</th>
+                <th class="col-sq-stat">${grp.key === 'Вратарь' ? 'На ноль / Проп' : 'Голы / Пасы'}</th>
               </tr>
             </thead>
             <tbody>
@@ -311,26 +311,26 @@ document.addEventListener('DOMContentLoaded', () => {
           const hasPhoto = p.photo && p.photo.trim().length > 0;
           const numStr = p.number && p.number !== '—' ? p.number : '—';
           const statCol = fut.isGk
-            ? `<strong style="color: var(--neon-volt);">${p.clean_sheets ?? 1}</strong> / <span style="color: var(--accent-red);">${p.goals_conceded ?? 0}</span>`
-            : `<strong>${p.goals ?? 0}</strong> / <span>${p.assists ?? 0}</span>`;
+            ? `<strong class="sq-stat-bold">${p.clean_sheets ?? 1}</strong> / <span class="sq-stat-dim">${p.goals_conceded ?? 0}</span>`
+            : `<strong class="sq-stat-bold">${p.goals ?? 0}</strong> / <span class="sq-stat-dim">${p.assists ?? 0}</span>`;
 
           tHtml += `
             <tr data-id="${p.id}">
-              <td style="font-family: var(--font-display); font-weight: 900; color: var(--neon-volt);">${numStr}</td>
-              <td>
+              <td class="col-sq-num"><span class="sq-table-num">${numStr}</span></td>
+              <td class="col-sq-player">
                 <div class="pro-table-person">
                   ${hasPhoto
                     ? `<img src="${p.photo}" class="pro-table-thumb" alt="${p.name}">`
                     : `<div class="pro-table-initials">${initials}</div>`
                   }
-                  <strong style="color: #FFFFFF;">${p.name}</strong>
+                  <strong class="pro-table-name">${p.name}</strong>
                 </div>
               </td>
-              <td><span class="fut-pos-badge ${getPosClass(p.position)}">${p.position}</span></td>
-              <td>${p.age ? p.age + ' лет' : '—'}</td>
-              <td><span style="font-family: var(--font-display); font-weight: 800; color: #FFFFFF;">${fut.ovr}</span></td>
-              <td>${p.matches_played ?? 1}</td>
-              <td>${statCol}</td>
+              <td class="col-sq-pos"><span class="pro-table-pos-pill">${p.position}</span></td>
+              <td class="col-sq-age">${p.age ? p.age + ' лет' : '—'}</td>
+              <td class="col-sq-ovr"><span class="pro-table-ovr">${fut.ovr}</span></td>
+              <td class="col-sq-matches">${p.matches_played ?? 1}</td>
+              <td class="col-sq-stat">${statCol}</td>
             </tr>
           `;
         });

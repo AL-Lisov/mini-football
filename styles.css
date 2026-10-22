@@ -970,11 +970,70 @@ button, input, select {
   color: #6B7280;
 }
 
+/* Squad Group Headers (Fix: position titles like ВРАТАРИ were white on white) */
+.bianconeri-block--light-alt .squad-group-header,
+.bianconeri-block--light .squad-group-header {
+  border-bottom: 2px solid #000000;
+  padding-bottom: 12px;
+  margin-bottom: 22px;
+}
+
+.bianconeri-block--light-alt .squad-group-title,
+.bianconeri-block--light .squad-group-title {
+  color: #000000 !important;
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+}
+
+.bianconeri-block--light-alt .squad-group-count,
+.bianconeri-block--light .squad-group-count {
+  background: #000000 !important;
+  color: #FFFFFF !important;
+  border: 1px solid #000000 !important;
+  font-family: var(--font-condensed);
+  font-size: 12px;
+  font-weight: 800;
+  padding: 3px 10px;
+  border-radius: var(--radius-xs);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Filter Pills Scroll & Uniform Heights (Fix: first button had greater height on mobile) */
+.filter-pills-scroll {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  overflow-x: auto !important;
+  padding-bottom: 6px !important;
+  scrollbar-width: none !important;
+  -webkit-overflow-scrolling: touch !important;
+}
+
+.filter-pills-scroll::-webkit-scrollbar {
+  display: none !important;
+}
+
+.t-filter-pill {
+  white-space: nowrap !important;
+  flex-shrink: 0 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  height: 38px !important;
+  line-height: 1 !important;
+  box-sizing: border-box !important;
+  padding: 0 16px !important;
+}
+
 .bianconeri-block--light-alt .t-filter-pill {
   background: #FFFFFF;
   border: 1px solid #D1D5DB;
   color: #374151;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .bianconeri-block--light-alt .t-filter-pill:hover {
@@ -983,10 +1042,10 @@ button, input, select {
 }
 
 .bianconeri-block--light-alt .t-filter-pill.active {
-  background: #000000;
-  color: #FFFFFF;
-  border-color: #000000;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  background: #000000 !important;
+  color: #FFFFFF !important;
+  border-color: #000000 !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25) !important;
 }
 
 .bianconeri-block--light-alt .view-style-btn {
@@ -1001,6 +1060,7 @@ button, input, select {
   border-color: #000000;
 }
 
+/* Squad Table View - Juventus Monochrome & Legibility (Fix: loud neon colors replaced by classic black) */
 .bianconeri-block--light-alt .pro-squad-table-wrap {
   background: #FFFFFF;
   border: 1px solid #E5E7EB;
@@ -1010,18 +1070,76 @@ button, input, select {
 .bianconeri-block--light-alt .pro-squad-table th {
   background: #0F121C;
   color: #FFFFFF;
+  font-family: var(--font-condensed);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 12px 14px;
 }
 
 .bianconeri-block--light-alt .pro-squad-table td {
   border-bottom: 1px solid #E5E7EB;
   color: #1F2937;
+  padding: 12px 14px;
 }
 
 .bianconeri-block--light-alt .pro-squad-table tbody tr:hover {
   background: #F9FAFB;
 }
 
-/* Standings Table inside Light Block */
+.col-sq-num .sq-table-num {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 15px;
+  color: #111827;
+}
+
+.pro-table-name {
+  font-family: var(--font-body);
+  font-weight: 700;
+  color: #111827;
+  font-size: 13px;
+}
+
+.pro-table-pos-pill {
+  font-family: var(--font-condensed);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #374151;
+  background: #F3F4F6;
+  border: 1px solid #E5E7EB;
+  padding: 3px 8px;
+  border-radius: var(--radius-xs);
+  white-space: nowrap;
+}
+
+.pro-table-ovr {
+  font-family: var(--font-display);
+  font-weight: 800;
+  color: #111827;
+  font-size: 13px;
+}
+
+.pro-table-initials {
+  background: #111827 !important;
+  color: #FFFFFF !important;
+  font-weight: 800 !important;
+  font-family: var(--font-display) !important;
+}
+
+.sq-stat-bold {
+  color: #111827;
+  font-weight: 800;
+}
+
+.sq-stat-dim {
+  color: #6B7280;
+}
+
+/* Standings Table inside Light Block (Fix: Points numbers were white on white) */
 .bianconeri-block--light .table-card-container {
   background: #FFFFFF;
   border: 1px solid #E5E7EB;
@@ -1044,7 +1162,7 @@ button, input, select {
 
 .bianconeri-block--light .superliga-standings-table td {
   border-bottom: 1px solid #E5E7EB;
-  color: #1F2937;
+  color: #111827;
 }
 
 .bianconeri-block--light .superliga-standings-table tbody tr:hover {
@@ -1052,8 +1170,22 @@ button, input, select {
 }
 
 .bianconeri-block--light .superliga-standings-table tr.highlight-row {
-  background: rgba(212, 255, 0, 0.12);
+  background: rgba(0, 0, 0, 0.03);
   border-left: 3px solid #000000;
+}
+
+.bianconeri-block--light .pos-badge {
+  color: #4B5563;
+}
+
+.bianconeri-block--light .pos-badge.medal-zone {
+  color: #B45309;
+  font-weight: 900;
+}
+
+.bianconeri-block--light .pos-diff {
+  color: #111827;
+  font-weight: 700;
 }
 
 .bianconeri-block--light .team-title-text {
@@ -1065,8 +1197,23 @@ button, input, select {
   font-weight: 800;
 }
 
+/* High-contrast solid black points in standings table */
+.bianconeri-block--light .standings-pts-badge,
 .bianconeri-block--light .standings-pts-bold {
-  color: #000000;
+  color: #000000 !important;
+  font-family: var(--font-display) !important;
+  font-size: 15px !important;
+  font-weight: 900 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.bianconeri-block--light tr.highlight-row .standings-pts-badge {
+  color: #000000 !important;
+  background: #E5E7EB !important;
+  padding: 3px 8px !important;
+  border-radius: var(--radius-xs) !important;
+  display: inline-block !important;
 }
 
 .bianconeri-block--light .standings-drawer-content {
@@ -3249,5 +3396,56 @@ button, input, select {
   }
   .juve-section-head-split {
     margin-bottom: 16px;
+  }
+
+  /* Squad Table Mobile Compact View (Fix: columns cut off on mobile) */
+  .pro-squad-table-wrap {
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    border-radius: var(--radius-sm);
+  }
+
+  .pro-squad-table {
+    min-width: 480px !important;
+    font-size: 11px !important;
+  }
+
+  .pro-squad-table th {
+    padding: 8px 6px !important;
+    font-size: 10px !important;
+  }
+
+  .pro-squad-table td {
+    padding: 8px 6px !important;
+    font-size: 11px !important;
+  }
+
+  .col-sq-num {
+    width: 26px !important;
+  }
+
+  .pro-table-thumb,
+  .pro-table-initials {
+    width: 26px !important;
+    height: 26px !important;
+    font-size: 10px !important;
+  }
+
+  .pro-table-person {
+    gap: 8px !important;
+  }
+
+  .col-sq-num .sq-table-num {
+    font-size: 13px !important;
+  }
+
+  .pro-table-name {
+    font-size: 12px !important;
+    white-space: nowrap !important;
+  }
+
+  .pro-table-pos-pill {
+    font-size: 10px !important;
+    padding: 2px 6px !important;
   }
 }
