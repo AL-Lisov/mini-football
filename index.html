@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-  <title>МФК «Доза Агро» | Первая лига 2026/2027 — Официальный портал</title>
+  <title>МФК «Доза Агро» | Первая лига 2026/2027 — Официальный клубный портал</title>
 
   <!-- Google Fonts: Unbounded (Brutalist Grotesque), Oswald (Sports Display), Plus Jakarta Sans (Clean UI) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -37,9 +37,11 @@
 
       <!-- Desktop Nav (Hidden on Mobile) -->
       <nav class="header-nav header-nav--desktop">
-        <a href="https://nndepsport.nagradion.ru/tournament46746" target="_blank" rel="noopener" class="nav-link">Турнир</a>
-        <a href="https://nndepsport.nagradion.ru/tournament46746/calendar" target="_blank" rel="noopener" class="nav-link">Календарь</a>
-        <a href="https://nndepsport.nagradion.ru/tournament46746/table" target="_blank" rel="noopener" class="nav-link">Таблица</a>
+        <a href="#section-matches" class="nav-link">Матч-центр</a>
+        <a href="#section-squad" class="nav-link">Состав</a>
+        <a href="#section-tactics" class="nav-link">Тактика</a>
+        <a href="#section-standings" class="nav-link">Таблица</a>
+        <a href="#section-calendar" class="nav-link">Календарь</a>
         <a href="https://nndepsport.nagradion.ru/tournament46746/team/448703/players" target="_blank" rel="noopener"
           class="header-orig-link">Наградион</a>
 
@@ -61,7 +63,7 @@
         </div>
       </nav>
 
-      <!-- Mobile Burger Button (Visible on Mobile only) -->
+      <!-- Mobile Burger Button -->
       <button class="mobile__burger" id="mobileBurgerBtn" aria-label="Меню навигации" aria-expanded="false">
         <span class="burger-bar"></span>
         <span class="burger-bar"></span>
@@ -72,16 +74,24 @@
     <!-- Mobile Dropdown Menu -->
     <div class="mobile__menu" id="mobileMenu">
       <div class="mobile__menu-inner">
-        <a href="https://nndepsport.nagradion.ru/tournament46746" target="_blank" rel="noopener" class="mobile-nav-link">
-          <span>Турнир (Первая лига 2026/27)</span>
+        <a href="#section-matches" class="mobile-nav-link">
+          <span>Матч-центр и таймер</span>
           <span class="mobile-nav-arrow">→</span>
         </a>
-        <a href="https://nndepsport.nagradion.ru/tournament46746/calendar" target="_blank" rel="noopener" class="mobile-nav-link">
-          <span>Календарь игр турнира</span>
+        <a href="#section-squad" class="mobile-nav-link">
+          <span>Состав команды (FUT Карточки)</span>
           <span class="mobile-nav-arrow">→</span>
         </a>
-        <a href="https://nndepsport.nagradion.ru/tournament46746/table" target="_blank" rel="noopener" class="mobile-nav-link">
+        <a href="#section-tactics" class="mobile-nav-link">
+          <span>Тактический планшет 5х5</span>
+          <span class="mobile-nav-arrow">→</span>
+        </a>
+        <a href="#section-standings" class="mobile-nav-link">
           <span>Турнирная таблица</span>
+          <span class="mobile-nav-arrow">→</span>
+        </a>
+        <a href="#section-calendar" class="mobile-nav-link">
+          <span>Календарь матчей</span>
           <span class="mobile-nav-arrow">→</span>
         </a>
         <a href="https://nndepsport.nagradion.ru/tournament46746/team/448703/players" target="_blank" rel="noopener" class="mobile-nav-link mobile-nav-link--highlight">
@@ -103,363 +113,445 @@
   </header>
 
   <!-- ========================================================================
-       MAIN PAGE CONTAINER
+       MAIN SITE CONTENT - BIANCONERI ALTERNATING LIGHT / DARK BLOCKS
        ======================================================================== -->
-  <main class="main-wrapper">
+  <main class="site-main">
 
-    <!-- BREADCRUMBS -->
-    <nav class="breadcrumbs-nav">
-      <a href="https://nndepsport.nagradion.ru/">Главная</a>
-      <span class="breadcrumb-arrow">›</span>
-      <a href="https://nndepsport.nagradion.ru/tournament46746">Первая лига 2026/2027</a>
-      <span class="breadcrumb-arrow">›</span>
-      <a href="https://nndepsport.nagradion.ru/tournament46746">Команды</a>
-      <span class="breadcrumb-arrow">›</span>
-      <span class="breadcrumb-current">МФК «Доза Агро»</span>
+    <!-- ----------------------------------------------------------------------
+         BLOCK 1 (DARK): HERO SHOWCASE & CLUB IDENTITY
+         ---------------------------------------------------------------------- -->
+    <section class="bianconeri-block bianconeri-block--dark" id="section-hero">
+      <div class="block-container">
+        <!-- BREADCRUMBS -->
+        <nav class="breadcrumbs-nav">
+          <a href="https://nndepsport.nagradion.ru/">Главная</a>
+          <span class="breadcrumb-arrow">›</span>
+          <a href="https://nndepsport.nagradion.ru/tournament46746">Первая лига 2026/2027</a>
+          <span class="breadcrumb-arrow">›</span>
+          <a href="https://nndepsport.nagradion.ru/tournament46746">Команды</a>
+          <span class="breadcrumb-arrow">›</span>
+          <span class="breadcrumb-current">МФК «Доза Агро»</span>
+        </nav>
+
+        <div class="club-hero-showcase">
+          <!-- Giant background brutalist watermark -->
+          <div class="hero-watermark-text" aria-hidden="true">DOZA AGRO 2026</div>
+
+          <div class="hero-main-grid">
+            <!-- Club Shield in Futuristic Metallic Frame -->
+            <div class="hero-shield-column">
+              <div class="club-shield-frame" id="clubShieldBtn" title="Нажмите, чтобы открыть эмблему в высоком разрешении">
+                <img src="https://img.nagradion.ru/images/bf300x500/shields/4b5baf713d124abd.png" alt="Герб Доза Агро"
+                  onerror="this.src='https://placehold.co/120x120/0b57d0/ffffff?text=ДА'">
+                <div class="shield-halo-glow"></div>
+              </div>
+              <span class="shield-sublabel">Официальный герб клуба</span>
+            </div>
+
+            <!-- Club Brutalist Titles & Meta -->
+            <div class="hero-content-column">
+              <div class="hero-league-badge">
+                <span class="league-dot-pulse"></span>
+                <span>ПЕРВАЯ ЛИГА НИЖНЕГО НОВГОРОДА • 2026/2027</span>
+              </div>
+
+              <h1 class="club-hero-title">
+                МФК ДОЗА АГРО<span class="title-accent-dot">.</span>
+              </h1>
+
+              <div class="club-submeta-pills">
+                <span class="pro-pill pill-neon">Футзал 5х5</span>
+                <span class="pro-pill pill-cyan">Нижний Новгород</span>
+                <span class="pro-pill pill-solid">Заявка подтверждена</span>
+                <button class="pro-pill pill-action" id="btnOpenTeamPhoto"
+                  title="Открыть командное фото в высоком разрешении">
+                  Командное фото HD
+                </button>
+              </div>
+
+              <!-- Leadership Bar (Pavlyuk & Balashov) -->
+              <div class="club-leadership-bar">
+                <div class="leader-item" id="leaderItemPavlyuk" style="cursor: pointer;"
+                  title="Нажмите для просмотра фото Павлюка А.">
+                  <img src="https://img.nagradion.ru/images/small/m/playerac2d91dcabaf0009494f10c994c5ffff.jpg"
+                    alt="Павлюк Александр" class="leader-avatar" onerror="this.style.display='none'">
+                  <div class="leader-meta">
+                    <strong>Павлюк Александр</strong>
+                    <span>Руководитель команды</span>
+                  </div>
+                </div>
+                <div class="leader-item" id="leaderItemBalashov" style="cursor: pointer;"
+                  title="Нажмите для просмотра фото Балашова М.">
+                  <img src="https://img.nagradion.ru/images/small/m/player0ed34af96bbb2dcc08bc7340b192dc53.jpg"
+                    alt="Балашов Максим" class="leader-avatar" onerror="this.style.display='none'">
+                  <div class="leader-meta">
+                    <strong>Балашов Максим</strong>
+                    <span>Тренер / Капитан</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- KEY SQUAD METRICS ROW (Arshin Servis Trust Counters + Sports Brutalism) -->
+          <div class="hero-metrics-strip">
+            <div class="metric-card">
+              <div class="metric-number-bold">18</div>
+              <div class="metric-label-group">
+                <span class="metric-heading">ИГРОКОВ В ЗАЯВКЕ</span>
+                <span class="metric-sub">Полная обойма состава</span>
+              </div>
+            </div>
+
+            <div class="metric-card highlight-metric">
+              <div class="metric-number-bold">3<span class="metric-sup">-е</span></div>
+              <div class="metric-label-group">
+                <span class="metric-heading">МЕСТО В ТАБЛИЦЕ</span>
+                <span class="metric-sub">Зона медалей Первой лиги</span>
+              </div>
+            </div>
+
+            <div class="metric-card">
+              <div class="metric-number-bold neon-volt">0</div>
+              <div class="metric-label-group">
+                <span class="metric-heading">ПРОПУЩЕННЫХ ГОЛОВ</span>
+                <span class="metric-sub">«Сухая» серия со старта</span>
+              </div>
+            </div>
+
+            <div class="metric-card">
+              <div class="metric-number-bold neon-cyan">100%</div>
+              <div class="metric-label-group">
+                <span class="metric-heading">НАДЕЖНОСТЬ ВРАТАРЕЙ</span>
+                <span class="metric-sub">Орехов (1т) + Лисов (2т)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ----------------------------------------------------------------------
+         BLOCK 2 (LIGHT - PURE WHITE #FFFFFF): JUVENTUS MATCH CENTER & CLOCK
+         ---------------------------------------------------------------------- -->
+    <section class="bianconeri-block bianconeri-block--light" id="section-matches">
+      <div class="block-container">
+        <!-- Top Nav Row on White (Juventus Style) -->
+        <div class="juve-nav-row">
+          <div class="juve-arrows-wrap">
+            <button class="juve-circle-btn" aria-label="Предыдущий матч" title="Предыдущий матч">←</button>
+            <button class="juve-circle-btn" aria-label="Следующий матч" title="Следующий матч">→</button>
+            <h2 class="juve-section-title-inline">МАТЧ-ЦЕНТР • ПЕРВАЯ ЛИГА</h2>
+          </div>
+          <a href="https://nndepsport.nagradion.ru/tournament46746" target="_blank" rel="noopener" class="juve-arrow-link">
+            → ОФИЦИАЛЬНЫЙ НАГРАДИОН
+          </a>
+        </div>
+
+        <!-- The Dark Juventus Match Ribbon inside Pure White Canvas -->
+        <div class="juve-match-ribbon">
+          <!-- Col 1: Ultime partite (Последний матч) -->
+          <div class="ribbon-col ribbon-col-last">
+            <div class="ribbon-col-header">ПОСЛЕДНИЙ МАТЧ:</div>
+            <div class="ribbon-match-box">
+              <div class="ribbon-date-chip">
+                <span class="ribbon-day">19</span>
+                <span class="ribbon-mon">ОКТ</span>
+              </div>
+              <div class="ribbon-match-info">
+                <div class="ribbon-league-sub">ПЕРВАЯ ЛИГА • 1-Й ТУР</div>
+                <div class="ribbon-teams-score">
+                  <div class="ribbon-team-line">
+                    <span>ПРОДТЕРМИНАЛ</span>
+                    <span class="ribbon-score-digit">0</span>
+                  </div>
+                  <div class="ribbon-team-line ribbon-my-team">
+                    <span>ДОЗА АГРО</span>
+                    <span class="ribbon-score-digit">0</span>
+                  </div>
+                </div>
+                <div class="ribbon-status-note">Матч «на ноль» • Орехов (1т) + Лисов (2т)</div>
+              </div>
+            </div>
+            <div class="ribbon-actions-bottom">
+              <a href="https://nndepsport.nagradion.ru/tournament46746" target="_blank" rel="noopener" class="ribbon-btn ribbon-btn-white">
+                ПРОТОКОЛ МАТЧА
+              </a>
+            </div>
+          </div>
+
+          <!-- Col 2: Prossima partita (Следующий матч) -->
+          <div class="ribbon-col ribbon-col-next">
+            <div class="ribbon-col-header">СЛЕДУЮЩИЙ МАТЧ:</div>
+            <div class="ribbon-match-box">
+              <div class="ribbon-date-chip ribbon-date-chip--active">
+                <span class="ribbon-day">26</span>
+                <span class="ribbon-mon">ОКТ</span>
+              </div>
+              <div class="ribbon-match-info">
+                <div class="ribbon-league-sub">ПЕРВАЯ ЛИГА • 19:30 • 2-Й ТУР</div>
+                <div class="ribbon-versus-row">
+                  <div class="ribbon-vs-team">
+                    <img src="shields/krasnaya_ramen.jpeg" alt="Красная Рамень" class="ribbon-shield" onerror="this.src='https://placehold.co/28x28/1e293b/ffffff?text=КР'">
+                    <span>КРАСНАЯ РАМЕНЬ</span>
+                  </div>
+                  <span class="ribbon-vs-badge">VS</span>
+                  <div class="ribbon-vs-team ribbon-my-team">
+                    <img src="shields/doza_agro.png" alt="Доза Агро" class="ribbon-shield" onerror="this.src='https://placehold.co/28x28/0b57d0/ffffff?text=ДА'">
+                    <span>ДОЗА АГРО</span>
+                  </div>
+                </div>
+                <div class="ribbon-venue-line">
+                  <a href="https://yandex.ru/maps/?text=%D0%A4%D0%9E%D0%9A+%D0%9C%D0%B5%D1%89%D0%B5%D1%80%D1%81%D0%BA%D0%B8%D0%B9+%D0%9D%D0%B8%D0%B6%D0%BD%D0%B8%D0%B9+%D0%9D%D0%BE%D0%B2%D0%B3%D0%BE%D1%80%D0%BE%D0%B4" target="_blank" rel="noopener">
+                    ФОК «Мещерский» (Смотреть на карте)
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="ribbon-actions-bottom">
+              <button class="ribbon-btn ribbon-btn-white" onclick="window.downloadICS('Красная Рамень', 'Доза Агро', 'ФОК Мещерский')">
+                + В КАЛЕНДАРЬ (.ICS)
+              </button>
+              <a href="#section-standings" class="ribbon-btn ribbon-btn-outline">
+                ТАБЛИЦА
+              </a>
+            </div>
+          </div>
+
+          <!-- Col 3: Real-Time Sports Clock & Countdown -->
+          <div class="ribbon-col ribbon-col-clock">
+            <div class="ribbon-clock-header">МАТЧ-ТАЙМЕР • МСК (UTC+3)</div>
+            <div class="ribbon-clock-display">
+              <div class="ribbon-digital-time" id="liveDigitalClock">10:46:14</div>
+              <div class="ribbon-digital-date" id="liveDigitalDate">ЧЕТВЕРГ, 22 ОКТЯБРЯ</div>
+            </div>
+            <div class="ribbon-cd-box">
+              <div class="ribbon-cd-label">ДО СТАРТА МАТЧА:</div>
+              <div class="ribbon-cd-row" id="matchCountdown">
+                <div class="ribbon-cd-unit"><span class="unit-num" id="cdDays">03</span><span class="unit-txt">ДН</span></div>
+                <span class="ribbon-cd-colon">:</span>
+                <div class="ribbon-cd-unit"><span class="unit-num" id="cdHours">14</span><span class="unit-txt">ЧАС</span></div>
+                <span class="ribbon-cd-colon">:</span>
+                <div class="ribbon-cd-unit"><span class="unit-num" id="cdMins">25</span><span class="unit-txt">МИН</span></div>
+                <span class="ribbon-cd-colon">:</span>
+                <div class="ribbon-cd-unit"><span class="unit-num unit-accent" id="cdSecs">10</span><span class="unit-txt">СЕК</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom Link on White Canvas -->
+        <div class="juve-bottom-link-row">
+          <a href="#section-calendar" class="juve-arrow-link">
+            → КАЛЕНДАРЬ И ВСЕ РЕЗУЛЬТАТЫ СЕЗОНА
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ----------------------------------------------------------------------
+         STICKY QUICK NAVIGATION BAR (Juventus Minimal Subnav)
+         ---------------------------------------------------------------------- -->
+    <nav class="juve-sticky-nav" id="juveStickyNav">
+      <div class="block-container juve-sticky-nav-inner">
+        <a href="#section-hero" class="juve-nav-pill active">О КЛУБЕ</a>
+        <a href="#section-matches" class="juve-nav-pill">МАТЧ-ЦЕНТР</a>
+        <a href="#section-squad" class="juve-nav-pill">СОСТАВ (18)</a>
+        <a href="#section-tactics" class="juve-nav-pill">ТАКТИКА 5х5</a>
+        <a href="#section-standings" class="juve-nav-pill">ТАБЛИЦА</a>
+        <a href="#section-calendar" class="juve-nav-pill">КАЛЕНДАРЬ</a>
+      </div>
     </nav>
 
-    <!-- ======================================================================
-         JUVENTUS-INSPIRED BRUTALIST HERO SHOWCASE
-         ====================================================================== -->
-    <section class="club-hero-showcase">
-      <!-- Giant background brutalist watermark -->
-      <div class="hero-watermark-text" aria-hidden="true">DOZA AGRO 2026</div>
-
-      <div class="hero-main-grid">
-        <!-- Club Shield in Futuristic Metallic Frame -->
-        <div class="hero-shield-column">
-          <div class="club-shield-frame" id="clubShieldBtn" title="Нажмите, чтобы открыть эмблему в высоком разрешении">
-            <img src="https://img.nagradion.ru/images/bf300x500/shields/4b5baf713d124abd.png" alt="Герб Доза Агро"
-              onerror="this.src='https://placehold.co/120x120/0b57d0/ffffff?text=ДА'">
-            <div class="shield-halo-glow"></div>
+    <!-- ----------------------------------------------------------------------
+         BLOCK 3 (LIGHT - PLATINUM #F4F6F9): SQUAD ROSTER & FUT CARDS
+         ---------------------------------------------------------------------- -->
+    <section class="bianconeri-block bianconeri-block--light-alt" id="section-squad">
+      <div class="block-container">
+        <!-- Section Header Row -->
+        <div class="juve-section-head-split">
+          <div>
+            <h2 class="juve-block-heading">СОСТАВ КОМАНДЫ • СЕЗОН 2026/2027</h2>
+            <p class="juve-block-sub">18 игроков в официальной заявке Первой лиги • Карточки FUT Ultimate Team</p>
           </div>
-          <span class="shield-sublabel">Официальный герб клуба</span>
+          <a href="https://nndepsport.nagradion.ru/tournament46746/team/448703/players" target="_blank" rel="noopener" class="juve-arrow-link">
+            → ВСЕ ИГРОКИ НА НАГРАДИОН
+          </a>
         </div>
 
-        <!-- Club Brutalist Titles & Meta -->
-        <div class="hero-content-column">
-          <div class="hero-league-badge">
-            <span class="league-dot-pulse"></span>
-            <span>ПЕРВАЯ ЛИГА НИЖНЕГО НОВГОРОДА • 2026/2027</span>
+        <!-- ROSTER SEARCH & FILTERS TOOLBAR (High-Contrast Brutalist) -->
+        <div class="roster-toolbar">
+          <div class="search-field-wrapper">
+            <svg class="search-field-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2">
+              <circle cx="11" cy="11" r="8" />
+              <line x1="21" y1="21" x2="16.65" y2="16.65" />
+            </svg>
+            <input type="text" id="squadSearchField" class="t-search-input" placeholder="Поиск по фамилии или номеру...">
           </div>
 
-          <h1 class="club-hero-title">
-            МФК ДОЗА АГРО<span class="title-accent-dot">.</span>
-          </h1>
+          <div class="filter-pills-scroll" id="positionFilters">
+            <button class="t-filter-pill active" data-pos="all">Все игроки (18)</button>
+            <button class="t-filter-pill" data-pos="Вратарь">Вратари (2)</button>
+            <button class="t-filter-pill" data-pos="Защитник">Защитники (2)</button>
+            <button class="t-filter-pill" data-pos="Универсал">Универсалы (2)</button>
+            <button class="t-filter-pill" data-pos="Нападающий">Нападающие (2)</button>
+            <button class="t-filter-pill" data-pos="Полевой">Полевые (10)</button>
+          </div>
 
-          <div class="club-submeta-pills">
-            <span class="pro-pill pill-neon">Футзал 5х5</span>
-            <span class="pro-pill pill-cyan">Нижний Новгород</span>
-            <span class="pro-pill pill-solid">Заявка подтверждена</span>
-            <button class="pro-pill pill-action" id="btnOpenTeamPhoto"
-              title="Открыть командное фото в высоком разрешении">
-              Командное фото HD
+          <div class="view-style-toggle">
+            <button class="view-style-btn active" id="btnModeCards" title="FUT Карточки">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="3" width="7" height="7" />
+                <rect x="14" y="3" width="7" height="7" />
+                <rect x="14" y="14" width="7" height="7" />
+                <rect x="3" y="14" width="7" height="7" />
+              </svg>
+              <span>FUT Карточки</span>
+            </button>
+            <button class="view-style-btn" id="btnModeTable" title="Таблица">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="8" y1="6" x2="21" y2="6" />
+                <line x1="8" y1="12" x2="21" y2="12" />
+                <line x1="8" y1="18" x2="21" y2="18" />
+                <line x1="3" y1="6" x2="3.01" y2="6" />
+                <line x1="3" y1="12" x2="3.01" y2="12" />
+                <line x1="3" y1="18" x2="3.01" y2="18" />
+              </svg>
+              <span>Таблица</span>
             </button>
           </div>
-
-          <!-- Leadership Bar (Pavlyuk & Balashov) -->
-          <div class="club-leadership-bar">
-            <div class="leader-item" id="leaderItemPavlyuk" style="cursor: pointer;"
-              title="Нажмите для просмотра фото Павлюка А.">
-              <img src="https://img.nagradion.ru/images/small/m/playerac2d91dcabaf0009494f10c994c5ffff.jpg"
-                alt="Павлюк Александр" class="leader-avatar" onerror="this.style.display='none'">
-              <div class="leader-meta">
-                <strong>Павлюк Александр</strong>
-                <span>Руководитель команды</span>
-              </div>
-            </div>
-            <div class="leader-item" id="leaderItemBalashov" style="cursor: pointer;"
-              title="Нажмите для просмотра фото Балашова М.">
-              <img src="https://img.nagradion.ru/images/small/m/player0ed34af96bbb2dcc08bc7340b192dc53.jpg"
-                alt="Балашов Максим" class="leader-avatar" onerror="this.style.display='none'">
-              <div class="leader-meta">
-                <strong>Балашов Максим</strong>
-                <span>Тренер / Капитан</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- KEY SQUAD METRICS ROW (Arshin Servis Trust Counters + Sports Brutalism) -->
-      <div class="hero-metrics-strip">
-        <div class="metric-card">
-          <div class="metric-number-bold">18</div>
-          <div class="metric-label-group">
-            <span class="metric-heading">ИГРОКОВ В ЗАЯВКЕ</span>
-            <span class="metric-sub">Полная обойма состава</span>
-          </div>
         </div>
 
-        <div class="metric-card highlight-metric">
-          <div class="metric-number-bold">3<span class="metric-sup">-е</span></div>
-          <div class="metric-label-group">
-            <span class="metric-heading">МЕСТО В ТАБЛИЦЕ</span>
-            <span class="metric-sub">Зона медалей Первой лиги</span>
-          </div>
-        </div>
-
-        <div class="metric-card">
-          <div class="metric-number-bold neon-volt">0</div>
-          <div class="metric-label-group">
-            <span class="metric-heading">ПРОПУЩЕННЫХ ГОЛОВ</span>
-            <span class="metric-sub">«Сухая» серия со старта</span>
-          </div>
-        </div>
-
-        <div class="metric-card">
-          <div class="metric-number-bold neon-cyan">100%</div>
-          <div class="metric-label-group">
-            <span class="metric-heading">НАДЕЖНОСТЬ ВРАТАРЕЙ</span>
-            <span class="metric-sub">Орехов (1т) + Лисов (2т)</span>
-          </div>
+        <!-- SQUAD DATA CONTAINER (Dynamic FUT cards popping on light surface) -->
+        <div id="squadGroupedOutput">
+          <!-- Rendered by app.js -->
         </div>
       </div>
     </section>
 
-    <!-- ======================================================================
-         PRO BROADCAST MATCH SPOTLIGHT (Match TV / DAZN / Sky Sports Level)
-         ====================================================================== -->
-    <section class="broadcast-match-banner">
-      <div class="broadcast-match-inner">
-        <!-- Left: Match status & Countdown -->
-        <div class="broadcast-meta-box">
-          <div class="match-live-tag">
-            <span class="live-beacon"></span>
-            <span>БЛИЖАЙШИЙ МАТЧ • 2-Й ТУР</span>
-          </div>
-          <div class="countdown-widget">
-            <span class="countdown-caption">ДО МАТЧА ОСТАЛОСЬ:</span>
-            <div class="countdown-timer-row" id="matchCountdown">
-              <div class="countdown-unit"><span class="unit-num" id="cdDays">03</span><span class="unit-txt">ДНЕЙ</span></div>
-              <span class="cd-sep">:</span>
-              <div class="countdown-unit"><span class="unit-num" id="cdHours">14</span><span class="unit-txt">ЧАСОВ</span></div>
-              <span class="cd-sep">:</span>
-              <div class="countdown-unit"><span class="unit-num" id="cdMins">25</span><span class="unit-txt">МИН</span></div>
-              <span class="cd-sep">:</span>
-              <div class="countdown-unit"><span class="unit-num neon-volt" id="cdSecs">10</span><span class="unit-txt">СЕК</span></div>
+    <!-- ----------------------------------------------------------------------
+         BLOCK 4 (DARK - STADIUM NIGHT #0A0D15): TACTICAL PITCH 5x5
+         ---------------------------------------------------------------------- -->
+    <section class="bianconeri-block bianconeri-block--dark" id="section-tactics">
+      <div class="block-container">
+        <div class="tactical-pitch-card">
+          <div class="pitch-top-controls">
+            <div>
+              <h3 class="pitch-title">ТАКТИЧЕСКИЙ ПЛАНШЕТ 5х5</h3>
+              <p class="pitch-sub">Интерактивная расстановка игроков МФК «Доза Агро» на паркете</p>
             </div>
-          </div>
-        </div>
 
-        <!-- Center: Versus Board -->
-        <div class="broadcast-scoreboard">
-          <div class="scoreboard-team home">
-            <img src="shields/krasnaya_ramen.jpeg" alt="Красная Рамень" class="sb-shield" onerror="this.src='https://placehold.co/48x48/1e293b/ffffff?text=КР'">
-            <div class="sb-team-name">КРАСНАЯ РАМЕНЬ</div>
-          </div>
-
-          <div class="scoreboard-middle">
-            <div class="sb-vs-badge">VS</div>
-            <div class="sb-date-pill">26 ОКТЯБРЯ • 19:30</div>
-            <div class="sb-venue">
-              <a href="https://yandex.ru/maps/?text=%D0%A4%D0%9E%D0%9A+%D0%9C%D0%B5%D1%89%D0%B5%D1%80%D1%81%D0%BA%D0%B8%D0%B9+%D0%9D%D0%B8%D0%B6%D0%BD%D0%B8%D0%B9+%D0%9D%D0%BE%D0%B2%D0%B3%D0%BE%D1%80%D0%BE%D0%B4" target="_blank" rel="noopener">ФОК «Мещерский» (Карта)</a>
+            <!-- Formation Switcher -->
+            <div class="formation-switcher" id="formationSwitch">
+              <button class="formation-btn active" data-formation="diamond">Ромб 1-2-1</button>
+              <button class="formation-btn" data-formation="box">Квадрат 2-2</button>
+              <button class="formation-btn" data-formation="pyramid">Схема 3-1</button>
             </div>
           </div>
 
-          <div class="scoreboard-team away">
-            <div class="sb-team-name my-club">ДОЗА АГРО</div>
-            <img src="shields/doza_agro.png" alt="Доза Агро" class="sb-shield" onerror="this.src='https://placehold.co/48x48/0b57d0/ffffff?text=ДА'">
+          <div class="pitch-court-surface" id="tacticalCourt">
+            <div class="pitch-half-line"></div>
+            <div class="pitch-center-ring"></div>
+            <div class="pitch-goal-area pitch-goal-top"></div>
+            <div class="pitch-goal-area pitch-goal-bottom"></div>
+
+            <!-- Position 1: Вратарь -->
+            <div class="court-player-pin" id="pinGk" style="top: 86%; left: 50%;" data-player-name="Лисов">
+              <div class="court-shirt-circle gk">1</div>
+              <div class="court-player-caption">Лисов А. (ВР)</div>
+            </div>
+
+            <!-- Position 2: Защитник (Fix) -->
+            <div class="court-player-pin" id="pinDef" style="top: 65%; left: 50%;" data-player-name="Баринов">
+              <div class="court-shirt-circle def">14</div>
+              <div class="court-player-caption">Баринов А. (ЗАЩ)</div>
+            </div>
+
+            <!-- Position 3: Левый фланг (Winger) -->
+            <div class="court-player-pin" id="pinLw" style="top: 42%; left: 22%;" data-player-name="Балашов">
+              <div class="court-shirt-circle uni">17</div>
+              <div class="court-player-caption">Балашов М. (УНИ)</div>
+            </div>
+
+            <!-- Position 4: Правый фланг (Winger) -->
+            <div class="court-player-pin" id="pinRw" style="top: 42%; left: 78%;" data-player-name="Гущин">
+              <div class="court-shirt-circle pol">30</div>
+              <div class="court-player-caption">Гущин И. (ПОЛ)</div>
+            </div>
+
+            <!-- Position 5: Нападающий (Pivot) -->
+            <div class="court-player-pin" id="pinFwd" style="top: 18%; left: 50%;" data-player-name="Драгов">
+              <div class="court-shirt-circle fwd">10</div>
+              <div class="court-player-caption">Драгов А. (НАП)</div>
+            </div>
           </div>
-        </div>
 
-        <!-- Right: Actions & Recent Result -->
-        <div class="broadcast-actions-box">
-          <button class="pro-btn btn-neon" onclick="window.downloadICS('Красная Рамень', 'Доза Агро', 'ФОК Мещерский')">
-            + В календарь (.ICS)
-          </button>
-          <div class="recent-result-chip">
-            <span class="chip-label">1-й тур:</span>
-            <span class="chip-score">0 : 0</span>
-            <span class="chip-desc">против Продтерминал (на ноль)</span>
+          <p class="pitch-helper-text">
+            Нажмите на любого игрока на площадке, чтобы открыть его карточку с детальными характеристиками
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ----------------------------------------------------------------------
+         BLOCK 5 (LIGHT - PURE WHITE #FFFFFF): STANDINGS TABLE
+         ---------------------------------------------------------------------- -->
+    <section class="bianconeri-block bianconeri-block--light" id="section-standings">
+      <div class="block-container">
+        <div class="table-card-container">
+          <div class="standings-header-bar">
+            <div>
+              <h3 class="standings-title">ТУРНИРНАЯ ТАБЛИЦА • ПЕРВАЯ ЛИГА 2026/2027</h3>
+              <p class="standings-sub">Мини-футбол (Футзал 5х5) • Нижний Новгород</p>
+            </div>
+            <div class="standings-legend">
+              <span class="legend-item"><span class="legend-color gold"></span> 1-3 Места: Зона медалей</span>
+              <span class="standings-mobile-tap-hint">Нажмите на строку для полной статистики</span>
+            </div>
           </div>
+
+          <table class="superliga-standings-table">
+            <thead>
+              <tr>
+                <th class="col-pos">#</th>
+                <th class="col-team col-club-left">Команда</th>
+                <th class="col-games" title="Игры">И</th>
+                <th class="col-wins col-optional" title="Победы">В</th>
+                <th class="col-draws col-optional" title="Ничьи">Н</th>
+                <th class="col-losses col-optional" title="Поражения">П</th>
+                <th class="col-goals col-optional" title="Мячи">Мячи</th>
+                <th class="col-diff" title="Разница мячей">+/-</th>
+                <th class="col-pts" title="Очки">Очки</th>
+                <th class="col-form col-optional">Форма</th>
+              </tr>
+            </thead>
+            <tbody id="leagueStandingsBody">
+              <!-- Rendered by app.js -->
+            </tbody>
+          </table>
         </div>
       </div>
     </section>
 
-    <!-- ======================================================================
-         PRO SEGMENTED NAVIGATION TABS
-         ====================================================================== -->
-    <div class="pro-tabs-container">
-      <div class="pro-segmented-tabs" role="tablist">
-        <button class="pro-tab-item active" data-tab="tab-squad" role="tab">
-          <span class="tab-label">СОСТАВ КОМАНДЫ</span>
-          <span class="tab-counter">18</span>
-        </button>
-        <button class="pro-tab-item" data-tab="tab-calendar" role="tab">
-          <span class="tab-label">КАЛЕНДАРЬ МАТЧЕЙ</span>
-          <span class="tab-counter">8</span>
-        </button>
-        <button class="pro-tab-item" data-tab="tab-standings" role="tab">
-          <span class="tab-label">ТУРНИРНАЯ ТАБЛИЦА</span>
-        </button>
-        <button class="pro-tab-item" data-tab="tab-tactics" role="tab">
-          <span class="tab-label">ТАКТИЧЕСКИЙ ПЛАНШЕТ 5х5</span>
-        </button>
-      </div>
-    </div>
-
-    <!-- ======================================================================
-         TAB 1: SQUAD ROSTER (FUT Ultimate Team Cards + Pro Table)
-         ====================================================================== -->
-    <section class="tab-view-panel active" id="tab-squad">
-
-      <!-- ROSTER SEARCH & FILTERS TOOLBAR -->
-      <div class="roster-toolbar">
-        <div class="search-field-wrapper">
-          <svg class="search-field-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-            stroke-width="2">
-            <circle cx="11" cy="11" r="8" />
-            <line x1="21" y1="21" x2="16.65" y2="16.65" />
-          </svg>
-          <input type="text" id="squadSearchField" class="t-search-input" placeholder="Поиск по фамилии или номеру...">
-        </div>
-
-        <div class="filter-pills-scroll" id="positionFilters">
-          <button class="t-filter-pill active" data-pos="all">Все игроки (18)</button>
-          <button class="t-filter-pill" data-pos="Вратарь">Вратари (2)</button>
-          <button class="t-filter-pill" data-pos="Защитник">Защитники (2)</button>
-          <button class="t-filter-pill" data-pos="Универсал">Универсалы (2)</button>
-          <button class="t-filter-pill" data-pos="Нападающий">Нападающие (2)</button>
-          <button class="t-filter-pill" data-pos="Полевой">Полевые (10)</button>
-        </div>
-
-        <div class="view-style-toggle">
-          <button class="view-style-btn active" id="btnModeCards" title="FUT Карточки">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <rect x="3" y="3" width="7" height="7" />
-              <rect x="14" y="3" width="7" height="7" />
-              <rect x="14" y="14" width="7" height="7" />
-              <rect x="3" y="14" width="7" height="7" />
-            </svg>
-            <span>FUT Карточки</span>
-          </button>
-          <button class="view-style-btn" id="btnModeTable" title="Таблица">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <line x1="8" y1="6" x2="21" y2="6" />
-              <line x1="8" y1="12" x2="21" y2="12" />
-              <line x1="8" y1="18" x2="21" y2="18" />
-              <line x1="3" y1="6" x2="3.01" y2="6" />
-              <line x1="3" y1="12" x2="3.01" y2="12" />
-              <line x1="3" y1="18" x2="3.01" y2="18" />
-            </svg>
-            <span>Таблица</span>
-          </button>
-        </div>
-      </div>
-
-      <!-- SQUAD DATA CONTAINER (Populated dynamically by app.js) -->
-      <div id="squadGroupedOutput">
-        <!-- Rendered by app.js -->
-      </div>
-    </section>
-
-    <!-- ======================================================================
-         TAB 2: CALENDAR & MATCHES (Broadcast Schedule Cards)
-         ====================================================================== -->
-    <section class="tab-view-panel" id="tab-calendar">
-      <div class="matches-grid-flow" id="calendarMatchList">
-        <!-- Rendered by app.js -->
-      </div>
-    </section>
-
-    <!-- ======================================================================
-         TAB 3: STANDINGS TABLE (Serie A / Champions League Pro Table)
-         ====================================================================== -->
-    <section class="tab-view-panel" id="tab-standings">
-      <div class="table-card-container">
-        <div class="standings-header-bar">
+    <!-- ----------------------------------------------------------------------
+         BLOCK 6 (DARK - DEEP GRAPHITE #0D1019): FULL SEASON CALENDAR
+         ---------------------------------------------------------------------- -->
+    <section class="bianconeri-block bianconeri-block--dark" id="section-calendar">
+      <div class="block-container">
+        <div class="juve-section-head-split">
           <div>
-            <h3 class="standings-title">ТУРНИРНАЯ ТАБЛИЦА • ПЕРВАЯ ЛИГА 2026/2027</h3>
-            <p class="standings-sub">Мини-футбол (Футзал) • Нижний Новгород</p>
+            <h2 class="juve-block-heading" style="color: #FFFFFF;">КАЛЕНДАРЬ МАТЧЕЙ СЕЗОНА</h2>
+            <p class="juve-block-sub" style="color: var(--text-muted);">Расписание всех 8 туров Чемпионата Нижнего Новгорода</p>
           </div>
-          <div class="standings-legend">
-            <span class="legend-item"><span class="legend-color gold"></span> 1-3 Места: Зона медалей</span>
-            <span class="standings-mobile-tap-hint">Нажмите на строку для полной статистики</span>
-          </div>
+          <a href="https://nndepsport.nagradion.ru/tournament46746/calendar" target="_blank" rel="noopener" class="juve-arrow-link" style="color: var(--neon-volt); border-bottom-color: var(--neon-volt);">
+            → КАЛЕНДАРЬ НА НАГРАДИОН
+          </a>
         </div>
 
-        <table class="superliga-standings-table">
-          <thead>
-            <tr>
-              <th class="col-pos">#</th>
-              <th class="col-team col-club-left">Команда</th>
-              <th class="col-games" title="Игры">И</th>
-              <th class="col-wins col-optional" title="Победы">В</th>
-              <th class="col-draws col-optional" title="Ничьи">Н</th>
-              <th class="col-losses col-optional" title="Поражения">П</th>
-              <th class="col-goals col-optional" title="Мячи">Мячи</th>
-              <th class="col-diff" title="Разница мячей">+/-</th>
-              <th class="col-pts" title="Очки">Очки</th>
-              <th class="col-form col-optional">Форма</th>
-            </tr>
-          </thead>
-          <tbody id="leagueStandingsBody">
-            <!-- Rendered by app.js -->
-          </tbody>
-        </table>
-      </div>
-    </section>
-
-    <!-- ======================================================================
-         TAB 4: TACTICS BOARD (Cyber Futsal Pitch with Formations)
-         ====================================================================== -->
-    <section class="tab-view-panel" id="tab-tactics">
-      <div class="tactical-pitch-card">
-        <div class="pitch-top-controls">
-          <div>
-            <h3 class="pitch-title">ТАКТИЧЕСКИЙ ПЛАНШЕТ 5х5</h3>
-            <p class="pitch-sub">Интерактивная расстановка игроков МФК «Доза Агро»</p>
-          </div>
-
-          <!-- Formation Switcher -->
-          <div class="formation-switcher" id="formationSwitch">
-            <button class="formation-btn active" data-formation="diamond">Ромб 1-2-1</button>
-            <button class="formation-btn" data-formation="box">Квадрат 2-2</button>
-            <button class="formation-btn" data-formation="pyramid">Схема 3-1</button>
-          </div>
+        <div class="matches-grid-flow" id="calendarMatchList">
+          <!-- Rendered by app.js -->
         </div>
-
-        <div class="pitch-court-surface" id="tacticalCourt">
-          <div class="pitch-half-line"></div>
-          <div class="pitch-center-ring"></div>
-          <div class="pitch-goal-area pitch-goal-top"></div>
-          <div class="pitch-goal-area pitch-goal-bottom"></div>
-
-          <!-- Position 1: Вратарь -->
-          <div class="court-player-pin" id="pinGk" style="top: 86%; left: 50%;" data-player-name="Лисов">
-            <div class="court-shirt-circle gk">1</div>
-            <div class="court-player-caption">Лисов А. (ВР)</div>
-          </div>
-
-          <!-- Position 2: Защитник (Fix) -->
-          <div class="court-player-pin" id="pinDef" style="top: 65%; left: 50%;" data-player-name="Баринов">
-            <div class="court-shirt-circle def">14</div>
-            <div class="court-player-caption">Баринов А. (ЗАЩ)</div>
-          </div>
-
-          <!-- Position 3: Левый фланг (Winger) -->
-          <div class="court-player-pin" id="pinLw" style="top: 42%; left: 22%;" data-player-name="Балашов">
-            <div class="court-shirt-circle uni">17</div>
-            <div class="court-player-caption">Балашов М. (УНИ)</div>
-          </div>
-
-          <!-- Position 4: Правый фланг (Winger) -->
-          <div class="court-player-pin" id="pinRw" style="top: 42%; left: 78%;" data-player-name="Гущин">
-            <div class="court-shirt-circle pol">30</div>
-            <div class="court-player-caption">Гущин И. (ПОЛ)</div>
-          </div>
-
-          <!-- Position 5: Нападающий (Pivot) -->
-          <div class="court-player-pin" id="pinFwd" style="top: 18%; left: 50%;" data-player-name="Драгов">
-            <div class="court-shirt-circle fwd">10</div>
-            <div class="court-player-caption">Драгов А. (НАП)</div>
-          </div>
-        </div>
-
-        <p class="pitch-helper-text">
-          Нажмите на любого игрока на площадке, чтобы открыть его карточку с детальными характеристиками
-        </p>
       </div>
     </section>
 

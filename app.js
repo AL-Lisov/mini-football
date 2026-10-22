@@ -694,20 +694,47 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // =========================================================================
-  // 6. TABS NAVIGATION
+  // 6. STICKY SUBNAV & SMOOTH SCROLL SPY
   // =========================================================================
-  tabButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const targetId = btn.getAttribute('data-tab');
+  const navPills = document.querySelectorAll('.juve-nav-pill');
+  const anchorLinks = document.querySelectorAll('a[href^="#section-"]');
 
-      tabButtons.forEach(b => b.classList.remove('active'));
-      tabPanels.forEach(p => p.classList.remove('active'));
+  anchorLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+      const href = link.getAttribute('href');
+      const targetSec = document.querySelector(href);
+      if (targetSec) {
+        e.preventDefault();
+        const headerOffset = 110;
+        const elementPosition = targetSec.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
 
-      btn.classList.add('active');
-      const panel = document.getElementById(targetId);
-      if (panel) panel.classList.add('active');
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
+      }
     });
   });
+
+  // Scroll spy to highlight active pill in sticky subnav
+  const observedSections = document.querySelectorAll('section[id^="section-"]');
+  window.addEventListener('scroll', () => {
+    let currentId = '';
+    const scrollPos = window.scrollY + 140;
+
+    observedSections.forEach(sec => {
+      if (scrollPos >= sec.offsetTop) {
+        currentId = sec.getAttribute('id');
+      }
+    });
+
+    if (currentId) {
+      navPills.forEach(pill => {
+        pill.classList.toggle('active', pill.getAttribute('href') === `#${currentId}`);
+      });
+    }
+  }, { passive: true });
 
   // =========================================================================
   // 7. TACTICAL PITCH 5x5 (Cyber Formations)
@@ -803,6 +830,40 @@ document.addEventListener('DOMContentLoaded', () => {
 
     update();
     setInterval(update, 1000);
+  }
+
+  // =========================================================================
+  // 8.1 LIVE DIGITAL SPORTS CLOCK (Juventus Match Ribbon - Moscow UTC+3)
+  // =========================================================================
+  function startLiveClock() {
+    const clockEl = document.getElementById('liveDigitalClock');
+    const dateEl = document.getElementById('liveDigitalDate');
+    if (!clockEl && !dateEl) return;
+
+    function tick() {
+      const now = new Date();
+      // Formatted Moscow time
+      const timeStr = now.toLocaleTimeString('ru-RU', {
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        timeZone: 'Europe/Moscow'
+      });
+
+      const daysRu = ['ВОСКРЕСЕНЬЕ', 'ПОНЕДЕЛЬНИК', 'ВТОРНИК', 'СРЕДА', 'ЧЕТВЕРГ', 'ПЯТНИЦА', 'СУББОТА'];
+      const monthsRu = ['ЯНВАРЯ', 'ФЕВРАЛЯ', 'МАРТА', 'АПРЕЛЯ', 'МАЯ', 'ИЮНЯ', 'ИЮЛЯ', 'АВГУСТА', 'СЕНТЯБРЯ', 'ОКТЯБРЯ', 'НОЯБРЯ', 'ДЕКАБРЯ'];
+
+      const dayOfWeek = daysRu[now.getDay()];
+      const dayNum = now.getDate();
+      const monthName = monthsRu[now.getMonth()];
+      const dateStr = `${dayOfWeek}, ${dayNum} ${monthName}`;
+
+      if (clockEl) clockEl.textContent = timeStr;
+      if (dateEl) dateEl.textContent = dateStr;
+    }
+
+    tick();
+    setInterval(tick, 1000);
   }
 
   // =========================================================================
@@ -1028,4 +1089,5 @@ document.addEventListener('DOMContentLoaded', () => {
   renderCalendar();
   renderStandings();
   startCountdown();
+  startLiveClock();
 });

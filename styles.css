@@ -424,8 +424,670 @@ button, input, select {
 }
 
 /* --------------------------------------------------------------------------
-   4. MAIN WRAPPER & BREADCRUMBS
+   4. BIANCONERI ALTERNATING BLOCKS SYSTEM (Juventus Architectural Contrast)
    -------------------------------------------------------------------------- */
+.site-main {
+  width: 100%;
+  position: relative;
+  overflow-x: hidden;
+}
+
+.bianconeri-block {
+  width: 100%;
+  position: relative;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Dark Block (Obsidian Stadium Atmosphere) */
+.bianconeri-block--dark {
+  background-color: var(--bg-app);
+  color: var(--text-body);
+}
+
+/* Light Block (Pure White #FFFFFF Juventus Showcase) */
+.bianconeri-block--light {
+  background-color: #FFFFFF;
+  color: #111827;
+  border-top: 1px solid #E5E7EB;
+  border-bottom: 1px solid #E5E7EB;
+}
+
+/* Light Alt Block (Clean Platinum #F4F6F9 Gallery) */
+.bianconeri-block--light-alt {
+  background-color: #F4F6F9;
+  color: #111827;
+  border-top: 1px solid #E5E7EB;
+  border-bottom: 1px solid #E5E7EB;
+}
+
+.block-container {
+  max-width: 1360px;
+  margin: 0 auto;
+  padding: 44px 24px;
+}
+
+/* --------------------------------------------------------------------------
+   4.1 JUVENTUS SECTION HEADERS & NAV CONTROLS
+   -------------------------------------------------------------------------- */
+.juve-nav-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.juve-arrows-wrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.juve-circle-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1.5px solid #000000;
+  background: transparent;
+  color: #000000;
+  font-size: 16px;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.juve-circle-btn:hover {
+  background: #000000;
+  color: #FFFFFF;
+  transform: scale(1.05);
+}
+
+.juve-section-title-inline {
+  font-family: var(--font-display);
+  font-size: 17px;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  color: #000000;
+  text-transform: uppercase;
+}
+
+.juve-arrow-link {
+  font-family: var(--font-condensed);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #000000;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border-bottom: 1.5px solid #000000;
+  padding-bottom: 2px;
+  transition: all 0.2s ease;
+}
+
+.juve-arrow-link:hover {
+  color: var(--neon-crimson);
+  border-bottom-color: var(--neon-crimson);
+}
+
+.juve-section-head-split {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.juve-block-heading {
+  font-family: var(--font-display);
+  font-size: clamp(20px, 2.5vw, 26px);
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  color: #000000;
+  line-height: 1.15;
+  text-transform: uppercase;
+}
+
+.juve-block-sub {
+  font-size: 13px;
+  color: #6B7280;
+  margin-top: 4px;
+}
+
+.juve-bottom-link-row {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 14px;
+}
+
+/* --------------------------------------------------------------------------
+   4.2 JUVENTUS MATCH RIBBON (High-End Dark Bar inside Light Section)
+   -------------------------------------------------------------------------- */
+.juve-match-ribbon {
+  background: #0E1118;
+  border-radius: var(--radius-md);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.22);
+  display: grid;
+  grid-template-columns: 1.15fr 1.35fr 320px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+  color: #FFFFFF;
+}
+
+.ribbon-col {
+  padding: 24px 26px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-right: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.ribbon-col:last-child {
+  border-right: none;
+}
+
+.ribbon-col-header {
+  font-family: var(--font-condensed);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 14px;
+}
+
+.ribbon-match-box {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  margin-bottom: 18px;
+}
+
+.ribbon-date-chip {
+  width: 48px;
+  height: 52px;
+  background: #181D2B;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-xs);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.ribbon-date-chip--active {
+  border-color: var(--neon-volt);
+  box-shadow: 0 0 12px rgba(212, 255, 0, 0.2);
+}
+
+.ribbon-day {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 900;
+  color: #FFFFFF;
+  line-height: 1;
+}
+
+.ribbon-date-chip--active .ribbon-day {
+  color: var(--neon-volt);
+}
+
+.ribbon-mon {
+  font-family: var(--font-condensed);
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
+.ribbon-match-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.ribbon-league-sub {
+  font-family: var(--font-condensed);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 6px;
+}
+
+.ribbon-teams-score {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.ribbon-team-line {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  color: #E2E8F0;
+}
+
+.ribbon-team-line.ribbon-my-team {
+  color: #FFFFFF;
+}
+
+.ribbon-score-digit {
+  font-size: 16px;
+  font-weight: 900;
+  color: var(--neon-crimson);
+  margin-left: 12px;
+}
+
+.ribbon-status-note {
+  font-size: 11px;
+  color: var(--neon-volt);
+  margin-top: 6px;
+  font-weight: 600;
+}
+
+.ribbon-versus-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 6px;
+}
+
+.ribbon-vs-team {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 800;
+  color: #FFFFFF;
+}
+
+.ribbon-vs-team.ribbon-my-team {
+  color: var(--neon-volt);
+}
+
+.ribbon-shield {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  border-radius: var(--radius-xs);
+  background: #FFFFFF;
+  padding: 1px;
+}
+
+.ribbon-vs-badge {
+  font-family: var(--font-condensed);
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--text-caption);
+  padding: 2px 6px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 3px;
+}
+
+.ribbon-venue-line {
+  font-size: 11px;
+  color: var(--neon-cyan);
+}
+
+.ribbon-venue-line a:hover {
+  text-decoration: underline;
+}
+
+.ribbon-actions-bottom {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.ribbon-btn {
+  font-family: var(--font-condensed);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 8px 16px;
+  border-radius: var(--radius-xs);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ribbon-btn-white {
+  background: #FFFFFF;
+  color: #000000;
+  border: 1px solid #FFFFFF;
+}
+
+.ribbon-btn-white:hover {
+  background: var(--neon-volt);
+  border-color: var(--neon-volt);
+  color: #000000;
+  box-shadow: 0 0 16px rgba(212, 255, 0, 0.35);
+}
+
+.ribbon-btn-outline {
+  background: transparent;
+  color: #FFFFFF;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.ribbon-btn-outline:hover {
+  border-color: #FFFFFF;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Ribbon Column 3: Live Sports Clock & Countdown */
+.ribbon-col-clock {
+  background: linear-gradient(145deg, #121622 0%, #0A0C14 100%);
+  padding: 24px;
+}
+
+.ribbon-clock-header {
+  font-family: var(--font-condensed);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--neon-cyan);
+  margin-bottom: 10px;
+}
+
+.ribbon-clock-display {
+  background: rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-xs);
+  padding: 12px 14px;
+  margin-bottom: 14px;
+  text-align: center;
+}
+
+.ribbon-digital-time {
+  font-family: var(--font-condensed);
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #FFFFFF;
+  line-height: 1;
+  text-shadow: 0 0 14px rgba(255, 255, 255, 0.3);
+}
+
+.ribbon-digital-date {
+  font-family: var(--font-condensed);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  margin-top: 4px;
+}
+
+.ribbon-cd-box {
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: var(--radius-xs);
+  padding: 10px 12px;
+}
+
+.ribbon-cd-label {
+  font-family: var(--font-condensed);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+  text-align: center;
+}
+
+.ribbon-cd-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.ribbon-cd-unit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 32px;
+}
+
+.ribbon-cd-unit .unit-num {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 900;
+  color: #FFFFFF;
+  line-height: 1;
+}
+
+.ribbon-cd-unit .unit-num.unit-accent {
+  color: var(--neon-volt);
+  text-shadow: 0 0 10px rgba(212, 255, 0, 0.4);
+}
+
+.ribbon-cd-unit .unit-txt {
+  font-size: 8px;
+  font-weight: 700;
+  color: var(--text-caption);
+  letter-spacing: 0.05em;
+  margin-top: 2px;
+}
+
+.ribbon-cd-colon {
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 900;
+  color: var(--neon-cyan);
+  margin-bottom: 8px;
+}
+
+/* --------------------------------------------------------------------------
+   4.3 STICKY QUICK NAVIGATION BAR (Juventus Minimal Subnav)
+   -------------------------------------------------------------------------- */
+.juve-sticky-nav {
+  position: sticky;
+  top: 58px;
+  z-index: 95;
+  background: rgba(8, 9, 13, 0.94);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+.juve-sticky-nav-inner {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 24px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.juve-sticky-nav-inner::-webkit-scrollbar {
+  display: none;
+}
+
+.juve-nav-pill {
+  font-family: var(--font-condensed);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.7);
+  padding: 8px 18px;
+  border-radius: var(--radius-xs);
+  white-space: nowrap;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  background: transparent;
+}
+
+.juve-nav-pill:hover {
+  color: #FFFFFF;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.juve-nav-pill.active {
+  background: var(--neon-volt);
+  color: #000000;
+  font-weight: 800;
+  box-shadow: 0 0 16px rgba(212, 255, 0, 0.35);
+}
+
+/* --------------------------------------------------------------------------
+   4.4 LIGHT BLOCK OVERRIDES (Contrast Tuning for High Legibility)
+   -------------------------------------------------------------------------- */
+.bianconeri-block--light-alt .t-search-input {
+  background: #FFFFFF;
+  border: 1px solid #D1D5DB;
+  color: #111827;
+}
+
+.bianconeri-block--light-alt .t-search-input:focus {
+  border-color: #000000;
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.08);
+}
+
+.bianconeri-block--light-alt .search-field-icon {
+  color: #6B7280;
+}
+
+.bianconeri-block--light-alt .t-filter-pill {
+  background: #FFFFFF;
+  border: 1px solid #D1D5DB;
+  color: #374151;
+  font-weight: 600;
+}
+
+.bianconeri-block--light-alt .t-filter-pill:hover {
+  border-color: #000000;
+  color: #000000;
+}
+
+.bianconeri-block--light-alt .t-filter-pill.active {
+  background: #000000;
+  color: #FFFFFF;
+  border-color: #000000;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+.bianconeri-block--light-alt .view-style-btn {
+  background: #FFFFFF;
+  border: 1px solid #D1D5DB;
+  color: #374151;
+}
+
+.bianconeri-block--light-alt .view-style-btn.active {
+  background: #000000;
+  color: #FFFFFF;
+  border-color: #000000;
+}
+
+.bianconeri-block--light-alt .pro-squad-table-wrap {
+  background: #FFFFFF;
+  border: 1px solid #E5E7EB;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+}
+
+.bianconeri-block--light-alt .pro-squad-table th {
+  background: #0F121C;
+  color: #FFFFFF;
+}
+
+.bianconeri-block--light-alt .pro-squad-table td {
+  border-bottom: 1px solid #E5E7EB;
+  color: #1F2937;
+}
+
+.bianconeri-block--light-alt .pro-squad-table tbody tr:hover {
+  background: #F9FAFB;
+}
+
+/* Standings Table inside Light Block */
+.bianconeri-block--light .table-card-container {
+  background: #FFFFFF;
+  border: 1px solid #E5E7EB;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.07);
+}
+
+.bianconeri-block--light .standings-title {
+  color: #000000;
+}
+
+.bianconeri-block--light .standings-sub {
+  color: #6B7280;
+}
+
+.bianconeri-block--light .superliga-standings-table th {
+  background: #0F121C;
+  color: #FFFFFF;
+  border-bottom: 2px solid #000000;
+}
+
+.bianconeri-block--light .superliga-standings-table td {
+  border-bottom: 1px solid #E5E7EB;
+  color: #1F2937;
+}
+
+.bianconeri-block--light .superliga-standings-table tbody tr:hover {
+  background: #F3F4F6;
+}
+
+.bianconeri-block--light .superliga-standings-table tr.highlight-row {
+  background: rgba(212, 255, 0, 0.12);
+  border-left: 3px solid #000000;
+}
+
+.bianconeri-block--light .team-title-text {
+  color: #111827;
+}
+
+.bianconeri-block--light .team-title-text.my-club-name {
+  color: #000000;
+  font-weight: 800;
+}
+
+.bianconeri-block--light .standings-pts-bold {
+  color: #000000;
+}
+
+.bianconeri-block--light .standings-drawer-content {
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+}
+
+.bianconeri-block--light .drawer-stat-item {
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+}
+
+.bianconeri-block--light .drawer-stat-item strong {
+  color: #111827;
+}
+
+.bianconeri-block--light .drawer-lbl {
+  color: #6B7280;
+}
+
+/* Backwards-compatibility container */
 .main-wrapper {
   max-width: 1360px;
   margin: 0 auto;
@@ -2534,5 +3196,58 @@ button, input, select {
 
   .drawer-stat-grid {
     grid-template-columns: repeat(4, 1fr) !important;
+  }
+}
+
+/* =========================================================================
+   JUVENTUS RIBBON & BIANCONERI BLOCKS RESPONSIVENESS
+   ========================================================================= */
+@media (max-width: 1024px) {
+  .juve-match-ribbon {
+    grid-template-columns: 1fr 1fr;
+  }
+  .ribbon-col-clock {
+    grid-column: span 2;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  .ribbon-col-next {
+    border-right: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .block-container {
+    padding: 32px 16px;
+  }
+  .juve-match-ribbon {
+    grid-template-columns: 1fr;
+  }
+  .ribbon-col {
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 20px 18px;
+  }
+  .ribbon-col-clock {
+    grid-column: span 1;
+    border-bottom: none;
+  }
+  .juve-sticky-nav {
+    top: 50px;
+  }
+  .juve-sticky-nav-inner {
+    padding: 8px 12px;
+  }
+  .juve-nav-pill {
+    padding: 6px 12px;
+    font-size: 11px;
+  }
+  .juve-section-title-inline {
+    font-size: 14px;
+  }
+  .juve-block-heading {
+    font-size: 18px;
+  }
+  .juve-section-head-split {
+    margin-bottom: 16px;
   }
 }
