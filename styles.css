@@ -3242,107 +3242,295 @@ button, input, select {
     font-weight: 600;
   }
 
+  /* =========================================================================
+     STANDINGS MOBILE ZERO-SWIPE ROBUST BLOCK/FLEX LAYOUT (Immune to Colspan Bugs)
+     ========================================================================= */
   .superliga-standings-table {
+    display: block !important;
     width: 100% !important;
-    table-layout: fixed !important;
+    table-layout: auto !important;
   }
 
-  /* Hide non-vital separate columns on mobile */
-  .superliga-standings-table .col-optional {
+  .superliga-standings-table thead {
+    display: block !important;
+    width: 100% !important;
+    margin-bottom: 6px !important;
+  }
+
+  .superliga-standings-table thead tr {
+    display: flex !important;
+    align-items: center !important;
+    background: #0F121C !important;
+    color: #FFFFFF !important;
+    border-radius: var(--radius-xs) !important;
+    padding: 10px 10px !important;
+  }
+
+  .superliga-standings-table thead th {
+    background: transparent !important;
+    padding: 0 !important;
+    border: none !important;
+    font-size: 11px !important;
+    font-family: var(--font-condensed) !important;
+    font-weight: 700 !important;
+    color: #FFFFFF !important;
+    text-transform: uppercase !important;
+  }
+
+  .superliga-standings-table thead th.col-pos {
+    width: 26px !important;
+    flex-shrink: 0 !important;
+    text-align: center !important;
+  }
+
+  .superliga-standings-table thead th.col-team {
+    flex: 1 !important;
+    text-align: left !important;
+    padding-left: 8px !important;
+    min-width: 0 !important;
+  }
+
+  .superliga-standings-table thead th.col-games {
+    width: 32px !important;
+    flex-shrink: 0 !important;
+    text-align: center !important;
+  }
+
+  .superliga-standings-table thead th.col-diff {
+    width: 36px !important;
+    flex-shrink: 0 !important;
+    text-align: center !important;
+  }
+
+  .superliga-standings-table thead th.col-pts {
+    width: 38px !important;
+    flex-shrink: 0 !important;
+    text-align: center !important;
+  }
+
+  .superliga-standings-table thead th.col-optional {
     display: none !important;
   }
 
-  .superliga-standings-table th,
-  .superliga-standings-table td {
-    padding: 10px 4px !important;
+  .superliga-standings-table tbody {
+    display: block !important;
+    width: 100% !important;
   }
 
-  .superliga-standings-table th.col-pos,
+  /* Main Team Row as Flex Row */
+  .superliga-standings-table tr.standings-team-row {
+    display: flex !important;
+    align-items: center !important;
+    padding: 12px 10px !important;
+    border-bottom: 1px solid #E5E7EB !important;
+    background: #FFFFFF !important;
+    transition: background 0.15s ease !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    cursor: pointer !important;
+  }
+
+  .superliga-standings-table tr.standings-team-row:hover,
+  .superliga-standings-table tr.standings-team-row.is-expanded {
+    background: #F8FAFC !important;
+  }
+
+  .superliga-standings-table tr.highlight-row {
+    background: rgba(0, 0, 0, 0.02) !important;
+    border-left: 3px solid #000000 !important;
+  }
+
+  .superliga-standings-table td {
+    padding: 0 !important;
+    border: none !important;
+  }
+
   .superliga-standings-table td.col-pos {
     width: 26px !important;
-    padding-left: 2px !important;
+    flex-shrink: 0 !important;
+    text-align: center !important;
+    font-family: var(--font-display) !important;
+    font-weight: 800 !important;
   }
 
-  .superliga-standings-table th.col-team,
   .superliga-standings-table td.col-team {
-    width: auto !important;
+    flex: 1 !important;
+    min-width: 0 !important;
+    padding-left: 8px !important;
+    padding-right: 6px !important;
     text-align: left !important;
   }
 
-  .superliga-standings-table th.col-games,
   .superliga-standings-table td.col-games {
-    width: 28px !important;
-    font-size: 12px !important;
+    width: 32px !important;
+    flex-shrink: 0 !important;
+    text-align: center !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    color: #4B5563 !important;
   }
 
-  .superliga-standings-table th.col-diff,
   .superliga-standings-table td.col-diff {
     width: 36px !important;
-    font-size: 12px !important;
+    flex-shrink: 0 !important;
+    text-align: center !important;
+    font-size: 13px !important;
+    font-weight: 700 !important;
   }
 
-  .superliga-standings-table th.col-pts,
   .superliga-standings-table td.col-pts {
     width: 38px !important;
-    padding-right: 4px !important;
+    flex-shrink: 0 !important;
+    text-align: center !important;
+  }
+
+  .superliga-standings-table td.col-optional {
+    display: none !important;
   }
 
   .team-cell-wrap {
+    display: flex !important;
+    align-items: center !important;
     gap: 8px !important;
+    min-width: 0 !important;
+    width: 100% !important;
   }
 
   .standings-shield {
     width: 24px !important;
     height: 24px !important;
+    flex-shrink: 0 !important;
   }
 
   .standings-shield-initials {
     width: 24px !important;
     height: 24px !important;
     font-size: 9px !important;
+    flex-shrink: 0 !important;
+  }
+
+  .team-info-box {
+    min-width: 0 !important;
+    flex: 1 !important;
+    overflow: hidden !important;
   }
 
   .team-title-text {
-    font-size: 12px !important;
+    font-size: 13px !important;
+    font-weight: 700 !important;
+    color: #111827 !important;
     white-space: nowrap !important;
     overflow: hidden !important;
     text-overflow: ellipsis !important;
-    max-width: 120px !important;
     display: block !important;
+    max-width: 100% !important;
+    line-height: 1.2 !important;
   }
 
   .team-meta-sub {
-    display: none !important;
+    font-size: 11px !important;
+    color: #6B7280 !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    display: block !important;
+    margin-top: 1px !important;
   }
 
   .team-mobile-substat {
-    display: flex !important;
-    align-items: center;
-    gap: 4px;
-    font-size: 10px;
-    color: var(--text-muted);
-    font-weight: 600;
-    margin-top: 2px;
-  }
-
-  .dot-sep {
-    color: var(--border-neon);
+    display: none !important;
   }
 
   .standings-pts-badge {
-    background: var(--neon-volt) !important;
-    color: #000000 !important;
+    background: #000000 !important;
+    color: #FFFFFF !important;
     font-family: var(--font-display) !important;
     font-size: 13px !important;
     font-weight: 900 !important;
-    padding: 3px 6px !important;
+    padding: 3px 8px !important;
     border-radius: var(--radius-xs) !important;
     display: inline-block !important;
-    box-shadow: 0 0 10px rgba(212, 255, 0, 0.3) !important;
+    box-shadow: none !important;
+  }
+
+  tr.highlight-row .standings-pts-badge {
+    background: #000000 !important;
+    color: var(--neon-volt) !important;
+  }
+
+  /* Expandable Drawer Row as Block (Never Breaks Columns) */
+  .superliga-standings-table tr.standings-drawer-row {
+    display: block !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    background: #F8FAFC !important;
+  }
+
+  .standings-drawer-cell {
+    display: block !important;
+    width: 100% !important;
+    padding: 0 !important;
+    border-bottom: 2px solid #000000 !important;
+    box-sizing: border-box !important;
+  }
+
+  .standings-drawer-content {
+    background: #F8FAFC !important;
+    border: 1px solid #E2E8F0 !important;
+    border-top: none !important;
+    padding: 14px 12px !important;
+    box-sizing: border-box !important;
   }
 
   .drawer-stat-grid {
+    display: grid !important;
     grid-template-columns: repeat(4, 1fr) !important;
+    gap: 6px !important;
+    margin-bottom: 10px !important;
+  }
+
+  .drawer-stat-item {
+    background: #FFFFFF !important;
+    border: 1px solid #E2E8F0 !important;
+    border-radius: var(--radius-xs) !important;
+    padding: 6px 4px !important;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04) !important;
+  }
+
+  .drawer-stat-item:last-child {
+    grid-column: span 2 !important;
+    background: #0F121C !important;
+    border-color: #000000 !important;
+  }
+
+  .drawer-stat-item:last-child strong {
+    color: var(--neon-volt) !important;
+    font-size: 15px !important;
+  }
+
+  .drawer-stat-item:last-child .drawer-lbl {
+    color: rgba(255, 255, 255, 0.7) !important;
+  }
+
+  .drawer-stat-item strong {
+    color: #111827 !important;
+    font-size: 13px !important;
+  }
+
+  .drawer-lbl {
+    color: #6B7280 !important;
+    font-size: 9px !important;
+    font-weight: 700 !important;
+  }
+
+  .drawer-footer-line {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    padding-top: 8px !important;
+    border-top: 1px solid #E2E8F0 !important;
+    font-size: 11px !important;
+    color: #4B5563 !important;
   }
 }
 

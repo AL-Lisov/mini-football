@@ -678,12 +678,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // Toggle drawer on click
       tr.addEventListener('click', () => {
-        const isCurrentlyOpen = drawerTr.style.display === 'table-row';
+        const isCurrentlyOpen = drawerTr.style.display !== 'none' && drawerTr.style.display !== '';
         document.querySelectorAll('.standings-drawer-row').forEach(d => d.style.display = 'none');
         document.querySelectorAll('.standings-team-row').forEach(r => r.classList.remove('is-expanded'));
 
         if (!isCurrentlyOpen) {
-          drawerTr.style.display = 'table-row';
+          drawerTr.style.display = window.innerWidth <= 640 ? 'block' : 'table-row';
           tr.classList.add('is-expanded');
         }
       });
