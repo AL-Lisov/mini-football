@@ -585,7 +585,7 @@ button, input, select {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  border-right: 1px solid rgba(255, 255, 255, 0.07);
+  border-right: 1px solid #FFFFFF;
 }
 
 .ribbon-col:last-child {
@@ -3563,7 +3563,7 @@ button, input, select {
   }
   .ribbon-col-clock {
     grid-column: span 2;
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    border-top: 1px solid #FFFFFF;
   }
   .ribbon-col-next {
     border-right: none;
@@ -3579,7 +3579,7 @@ button, input, select {
   }
   .ribbon-col {
     border-right: none;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    border-bottom: 1px solid #FFFFFF;
     padding: 20px 18px;
   }
   .ribbon-col-clock {
