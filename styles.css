@@ -1274,13 +1274,13 @@ button, input, select {
    -------------------------------------------------------------------------- */
 .club-hero-showcase {
   position: relative;
-  background: var(--bg-card);
-  border: 1px solid var(--border-card);
-  border-radius: var(--radius-xl);
-  padding: 40px 44px 32px;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  padding: 10px 0 0;
   margin-bottom: 24px;
   overflow: hidden;
-  box-shadow: var(--shadow-card);
+  box-shadow: none;
 }
 
 /* Giant background watermark */
@@ -3208,7 +3208,7 @@ button, input, select {
     display: flex !important;
   }
   .club-hero-showcase {
-    padding: 24px 20px;
+    padding: 0;
   }
   .hero-metrics-strip {
     grid-template-columns: 1fr;
