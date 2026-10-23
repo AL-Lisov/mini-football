@@ -1518,49 +1518,49 @@ button, input, select {
 }
 
 .metric-card {
-  background: var(--bg-card-elevated);
-  border: 1px solid var(--border-card);
+  background: #FFFFFF;
+  border: 1px solid #E5E7EB;
   border-radius: var(--radius-md);
   padding: 16px 20px;
   display: flex;
   align-items: center;
   gap: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
   transition: all 0.2s ease;
 }
 
 .metric-card:hover {
-  border-color: rgba(255, 255, 255, 0.2);
+  border-color: #000000;
   transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
 }
 
 .metric-card.highlight-metric {
-  background: radial-gradient(circle at top left, rgba(212, 255, 0, 0.08) 0%, #141826 100%);
-  border-color: var(--border-neon);
+  background: #FFFFFF;
+  border: 2px solid #000000;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.28);
 }
 
 .metric-number-bold {
   font-family: var(--font-display);
   font-size: 34px;
   font-weight: 900;
-  color: #FFFFFF;
+  color: #000000;
   line-height: 1;
   letter-spacing: -0.04em;
   flex-shrink: 0;
 }
 
-.metric-number-bold.neon-volt {
-  color: var(--neon-volt);
-  text-shadow: 0 0 16px rgba(212, 255, 0, 0.35);
-}
-
+.metric-number-bold.neon-volt,
 .metric-number-bold.neon-cyan {
-  color: var(--neon-cyan);
-  text-shadow: 0 0 16px rgba(0, 240, 255, 0.35);
+  color: #000000;
+  text-shadow: none;
 }
 
 .metric-sup {
   font-size: 18px;
-  color: var(--neon-volt);
+  color: #000000;
+  font-weight: 900;
   vertical-align: super;
 }
 
@@ -1572,16 +1572,17 @@ button, input, select {
 .metric-heading {
   font-family: var(--font-condensed);
   font-size: 13px;
-  font-weight: 700;
+  font-weight: 800;
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  color: var(--text-title);
+  color: #000000;
   line-height: 1.2;
 }
 
 .metric-sub {
   font-size: 11px;
-  color: var(--text-muted);
+  color: #4B5563;
+  font-weight: 500;
 }
 
 /* --------------------------------------------------------------------------
