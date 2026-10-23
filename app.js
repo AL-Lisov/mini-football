@@ -1001,36 +1001,13 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // =========================================================================
-  // 10. BACKGROUND ATMOSPHERE SWITCHER & MOBILE BURGER MENU
+  // 10. FIXED STADIUM THEME & MOBILE BURGER MENU
   // =========================================================================
-  const bgThemeSelect = document.getElementById('bgThemeSelect');
-  const bgThemeSelectMobile = document.getElementById('bgThemeSelectMobile');
   const mobileBurgerBtn = document.getElementById('mobileBurgerBtn');
   const mobileMenu = document.getElementById('mobileMenu');
 
-  // Background Theme Sync
-  const savedBg = localStorage.getItem('doza_bg_theme') || 'stadium-dark';
-  document.body.setAttribute('data-bg', savedBg);
-
-  if (bgThemeSelect) {
-    bgThemeSelect.value = savedBg;
-    bgThemeSelect.addEventListener('change', (e) => {
-      const val = e.target.value;
-      document.body.setAttribute('data-bg', val);
-      if (bgThemeSelectMobile) bgThemeSelectMobile.value = val;
-      localStorage.setItem('doza_bg_theme', val);
-    });
-  }
-
-  if (bgThemeSelectMobile) {
-    bgThemeSelectMobile.value = savedBg;
-    bgThemeSelectMobile.addEventListener('change', (e) => {
-      const val = e.target.value;
-      document.body.setAttribute('data-bg', val);
-      if (bgThemeSelect) bgThemeSelect.value = val;
-      localStorage.setItem('doza_bg_theme', val);
-    });
-  }
+  // Final Selected Theme: Stadium Cyber Dark
+  document.body.setAttribute('data-bg', 'stadium-dark');
 
   // Mobile Burger & Menu Controller
   if (mobileBurgerBtn && mobileMenu) {

@@ -228,6 +228,8 @@ button, input, select {
   color: var(--text-muted);
   padding: 6px 12px;
   border-radius: var(--radius-xs);
+  white-space: nowrap;
+  flex-shrink: 0;
   transition: all 0.2s ease;
 }
 
@@ -247,6 +249,8 @@ button, input, select {
   border: 1px solid var(--border-neon);
   padding: 6px 14px;
   border-radius: var(--radius-xs);
+  white-space: nowrap;
+  flex-shrink: 0;
   transition: all 0.2s ease;
 }
 
