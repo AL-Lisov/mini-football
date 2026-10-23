@@ -703,9 +703,9 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // =========================================================================
-  // 6. STICKY SUBNAV & SMOOTH SCROLL SPY
+  // 6. HEADER NAVIGATION & LIVE SCROLL SPY
   // =========================================================================
-  const navPills = document.querySelectorAll('.juve-nav-pill');
+  const headerNavLinks = document.querySelectorAll('.site-header .nav-link, .mobile-nav-link');
   const anchorLinks = document.querySelectorAll('a[href^="#section-"]');
 
   anchorLinks.forEach(link => {
@@ -714,7 +714,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const targetSec = document.querySelector(href);
       if (targetSec) {
         e.preventDefault();
-        const headerOffset = 110;
+        const headerOffset = 70;
         const elementPosition = targetSec.getBoundingClientRect().top;
         const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
 
@@ -722,15 +722,23 @@ document.addEventListener('DOMContentLoaded', () => {
           top: offsetPosition,
           behavior: 'smooth'
         });
+
+        // Close mobile dropdown menu if open
+        const mobileMenuEl = document.getElementById('mobileMenu');
+        const mobileBurgerEl = document.getElementById('mobileBurgerBtn');
+        if (mobileMenuEl && mobileMenuEl.classList.contains('is-open')) {
+          mobileMenuEl.classList.remove('is-open');
+          if (mobileBurgerEl) mobileBurgerEl.classList.remove('is-active');
+        }
       }
     });
   });
 
-  // Scroll spy to highlight active pill in sticky subnav
+  // Scroll spy to highlight active section in header
   const observedSections = document.querySelectorAll('section[id^="section-"]');
   window.addEventListener('scroll', () => {
-    let currentId = '';
-    const scrollPos = window.scrollY + 140;
+    let currentId = 'section-hero';
+    const scrollPos = window.scrollY + 120;
 
     observedSections.forEach(sec => {
       if (scrollPos >= sec.offsetTop) {
@@ -739,8 +747,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     if (currentId) {
-      navPills.forEach(pill => {
-        pill.classList.toggle('active', pill.getAttribute('href') === `#${currentId}`);
+      headerNavLinks.forEach(item => {
+        item.classList.toggle('active', item.getAttribute('href') === `#${currentId}`);
       });
     }
   }, { passive: true });

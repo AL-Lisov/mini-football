@@ -238,6 +238,13 @@ button, input, select {
   background: var(--bg-hover);
 }
 
+.nav-link.active {
+  background: var(--neon-volt);
+  color: #000000 !important;
+  font-weight: 800;
+  box-shadow: 0 0 16px rgba(212, 255, 0, 0.35);
+}
+
 .header-orig-link {
   font-family: var(--font-condensed);
   font-size: 12px;
