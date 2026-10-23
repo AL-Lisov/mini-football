@@ -1294,22 +1294,6 @@ button, input, select {
   box-shadow: none;
 }
 
-/* Giant background watermark */
-.hero-watermark-text {
-  position: absolute;
-  right: -20px;
-  bottom: -30px;
-  font-family: var(--font-display);
-  font-size: clamp(80px, 11vw, 150px);
-  font-weight: 900;
-  color: rgba(255, 255, 255, 0.025);
-  letter-spacing: -0.04em;
-  white-space: nowrap;
-  pointer-events: none;
-  user-select: none;
-  z-index: 1;
-}
-
 .hero-main-grid {
   position: relative;
   z-index: 2;
