@@ -107,8 +107,8 @@ window.SITE_DATA = {
       "age": "",
       "position": "Полевой",
       "photo": "https://img.nagradion.ru/images/small/m/player1f3e41c3ff333f89bdd2ccb170f27512.jpg",
-      "matches_played": 0,
-      "goals": 0,
+      "matches_played": 1,
+      "goals": 1,
       "assists": 0,
       "yellow_cards": 0,
       "red_cards": 0
@@ -323,6 +323,17 @@ window.SITE_DATA = {
       "note": "Победа Красной Рамени 3:1"
     },
     {
+      "tour": "2",
+      "date": "26 окт 2026",
+      "team1": "Красная Рамень (Останкино)",
+      "team2": "Доза Агро (Нижний Новгород)",
+      "venue": "ФОК \"Приокский\"",
+      "match_id": "4029306",
+      "score": "0 : 1",
+      "status": "completed",
+      "note": "Победный гол: Королев Николай (#12). Второй подряд сухой матч вратарей."
+    },
+    {
       "tour": "8",
       "date": "Дата уточняется",
       "team1": "Промавто (Нижний Новгород)",
@@ -362,16 +373,7 @@ window.SITE_DATA = {
       "score": "— : —",
       "status": "scheduled"
     },
-    {
-      "tour": "22",
-      "date": "Дата уточняется",
-      "team1": "Красная Рамень (Останкино)",
-      "team2": "Доза Агро (Нижний Новгород)",
-      "venue": "ФОК \"Приокский\"",
-      "match_id": "4029306",
-      "score": "— : —",
-      "status": "scheduled"
-    },
+
     {
       "tour": "27",
       "date": "Дата уточняется",
@@ -396,22 +398,72 @@ window.SITE_DATA = {
   "standings": [
     {
       "pos": 1,
-      "team": "Красная Рамень",
-      "city": "Останкино",
-      "shield": "shields/krasnaya_ramen.jpeg",
+      "team": "Доза Агро",
+      "city": "Нижний Новгород",
+      "shield": "shields/doza_agro.png",
+      "games": 2,
+      "w": 1,
+      "d": 1,
+      "l": 0,
+      "goals": "1-0",
+      "diff": "+1",
+      "points": 4,
+      "form": [
+        "D",
+        "W"
+      ]
+    },
+    {
+      "pos": 2,
+      "team": "НГПУ имени Козьмы Минина",
+      "city": "Нижний Новгород",
+      "shield": "shields/ngpu_minina.png",
       "games": 1,
       "w": 1,
       "d": 0,
       "l": 0,
-      "goals": "3-1",
-      "diff": "+2",
+      "goals": "3-2",
+      "diff": "+1",
       "points": 3,
       "form": [
         "W"
       ]
     },
     {
-      "pos": 2,
+      "pos": 3,
+      "team": "Красная Рамень",
+      "city": "Останкино",
+      "shield": "shields/krasnaya_ramen.jpeg",
+      "games": 2,
+      "w": 1,
+      "d": 0,
+      "l": 1,
+      "goals": "3-2",
+      "diff": "+1",
+      "points": 3,
+      "form": [
+        "W",
+        "L"
+      ]
+    },
+    {
+      "pos": 4,
+      "team": "МясиКо",
+      "city": "Нижний Новгород",
+      "shield": "shields/myasiko.jpeg",
+      "games": 1,
+      "w": 1,
+      "d": 0,
+      "l": 0,
+      "goals": "3-2",
+      "diff": "+1",
+      "points": 3,
+      "form": [
+        "W"
+      ]
+    },
+    {
+      "pos": 5,
       "team": "Продтерминал",
       "city": "Нижний Новгород",
       "shield": "shields/prodterminal.png",
@@ -427,65 +479,7 @@ window.SITE_DATA = {
       ]
     },
     {
-      "pos": 3,
-      "team": "Доза Агро",
-      "city": "Нижний Новгород",
-      "shield": "shields/doza_agro.png",
-      "games": 1,
-      "w": 0,
-      "d": 1,
-      "l": 0,
-      "goals": "0-0",
-      "diff": "0",
-      "points": 1,
-      "form": [
-        "D"
-      ]
-    },
-    {
-      "pos": 4,
-      "team": "ННГУ имени Н. И. Лобачевского",
-      "city": "Нижний Новгород",
-      "shield": "shields/nngu_lobachevsky.png",
-      "games": 0,
-      "w": 0,
-      "d": 0,
-      "l": 0,
-      "goals": "0-0",
-      "diff": "0",
-      "points": 0,
-      "form": []
-    },
-    {
-      "pos": 5,
-      "team": "НГПУ имени Козьмы Минина",
-      "city": "Нижний Новгород",
-      "shield": "shields/ngpu_minina.png",
-      "games": 0,
-      "w": 0,
-      "d": 0,
-      "l": 0,
-      "goals": "0-0",
-      "diff": "0",
-      "points": 0,
-      "form": []
-    },
-    {
       "pos": 6,
-      "team": "МясиКо",
-      "city": "Нижний Новгород",
-      "shield": "shields/myasiko.jpeg",
-      "games": 0,
-      "w": 0,
-      "d": 0,
-      "l": 0,
-      "goals": "0-0",
-      "diff": "0",
-      "points": 0,
-      "form": []
-    },
-    {
-      "pos": 7,
       "team": "Промавто",
       "city": "Нижний Новгород",
       "shield": "shields/promavto.png",
@@ -499,18 +493,36 @@ window.SITE_DATA = {
       "form": []
     },
     {
+      "pos": 7,
+      "team": "ННГУ имени Н. И. Лобачевского",
+      "city": "Нижний Новгород",
+      "shield": "shields/nngu_lobachevsky.png",
+      "games": 1,
+      "w": 0,
+      "d": 0,
+      "l": 1,
+      "goals": "2-3",
+      "diff": "-1",
+      "points": 0,
+      "form": [
+        "L"
+      ]
+    },
+    {
       "pos": 8,
       "team": "ITECO",
       "city": "Нижний Новгород",
       "shield": "shields/iteco.png",
-      "games": 0,
+      "games": 1,
       "w": 0,
       "d": 0,
-      "l": 0,
-      "goals": "0-0",
-      "diff": "0",
+      "l": 1,
+      "goals": "2-3",
+      "diff": "-1",
       "points": 0,
-      "form": []
+      "form": [
+        "L"
+      ]
     },
     {
       "pos": 9,
