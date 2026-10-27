@@ -105,13 +105,13 @@ body {
 
 /* Custom visual theme overrides via dropdown */
 body[data-bg="classic"] {
-  background-image: linear-gradient(rgba(8, 9, 13, 0.88), rgba(8, 9, 13, 0.94)), url('classic_bg.jpg') !important;
+  background-image: linear-gradient(rgba(8, 9, 13, 0.88), rgba(8, 9, 13, 0.94)), url('img/backgrounds/classic_bg.jpg') !important;
   background-size: cover !important;
   background-attachment: fixed !important;
 }
 
 body[data-bg="modern-cyan"] {
-  background-image: linear-gradient(rgba(8, 9, 13, 0.82), rgba(8, 9, 13, 0.92)), url('modern_cyan_bg.jpg') !important;
+  background-image: linear-gradient(rgba(8, 9, 13, 0.82), rgba(8, 9, 13, 0.92)), url('img/backgrounds/modern_cyan_bg.jpg') !important;
   background-size: cover !important;
   background-attachment: fixed !important;
 }

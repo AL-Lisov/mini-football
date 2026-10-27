@@ -2,6 +2,7 @@
 *.bin
 *.log
 scratch/
+archive/
 __pycache__/
 
 # Large singlefile reference dumps (already parsed into site_data.json)
