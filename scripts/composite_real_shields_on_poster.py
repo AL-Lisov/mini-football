@@ -192,3 +192,4 @@ def process_poster():
 
 if __name__ == "__main__":
     process_poster()
+
