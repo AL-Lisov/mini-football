@@ -341,7 +341,7 @@ window.SITE_DATA = {
       "venue": "ФОК \"Приокский\"",
       "match_id": "4029318",
       "score": "— : —",
-      "status": "next"
+      "status": "scheduled"
     },
     {
       "tour": "14",
@@ -354,14 +354,14 @@ window.SITE_DATA = {
       "status": "scheduled"
     },
     {
-      "tour": "16",
-      "date": "Дата уточняется",
+      "tour": "9",
+      "date": "16 ноя 2026, 21:10",
       "team1": "Доза Агро (Нижний Новгород)",
       "team2": "МясиКо (Нижний Новгород)",
       "venue": "ФОК \"Приокский\"",
       "match_id": "4029311",
       "score": "— : —",
-      "status": "scheduled"
+      "status": "next"
     },
     {
       "tour": "21",
@@ -385,14 +385,15 @@ window.SITE_DATA = {
       "status": "scheduled"
     },
     {
-      "tour": "6",
-      "date": "Дата уточняется",
+      "tour": "8",
+      "date": "9 ноя 2026",
       "team1": "ННГУ имени Н. И. Лобачевского (Нижний Новгород)",
       "team2": "Доза Агро (Нижний Новгород)",
       "venue": "ФОК \"Приокский\"",
       "match_id": "4029293",
-      "score": "— : —",
-      "status": "scheduled"
+      "score": "4 : 1",
+      "status": "completed",
+      "note": "Поражение 1:4 от команды ННГУ им. Лобачевского"
     }
   ],
   "standings": [

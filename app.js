@@ -812,8 +812,8 @@ document.addEventListener('DOMContentLoaded', () => {
   // 8. LIVE COUNTDOWN TIMER (Next Match)
   // =========================================================================
   function startCountdown() {
-    // Next match: 26 October 2026, 19:30 MSK
-    const targetDate = new Date('2026-10-26T19:30:00+03:00').getTime();
+    // Next match: 16 November 2026, 21:10 MSK (vs Myasiko)
+    const targetDate = new Date('2026-11-16T21:10:00+03:00').getTime();
 
     const cdDays = document.getElementById('cdDays');
     const cdHours = document.getElementById('cdHours');
